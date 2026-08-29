@@ -241,9 +241,9 @@ footer p{margin:0 0 6px;opacity:.85;}
     <div class="topnav-logo">TEFAP</div>
     <ul class="topnav-links">
       <li><a href="#details">פרטים</a></li>
-      <li><a href="#gallery">גלריה</a></li>
       <li hidden><a href="#rsvp">אישור הגעה</a></li> <!-- RSVP temporarily hidden -->
       <li><a href="#suggest">הצעות</a></li>
+      <li><a href="#gallery">גלריה</a></li>
     </ul>
   </div>
 </nav>
@@ -298,28 +298,7 @@ footer p{margin:0 0 6px;opacity:.85;}
       </div>
     </div>
   </div>
-  <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scB" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#EAF8FC"/></pattern><rect width="200" height="20" fill="url(#scB)"/></svg></div>
-</section>
-
-<!-- ================= GALLERY ================= -->
-<section id="gallery" class="section-gallery">
-  <div class="wrap section-inner">
-    <div class="reveal">
-      <span class="eyebrow" style="background:var(--blue);color:#fff;">פלאשבק</span>
-      <h2>2013 ולפני כן: הארכיון</h2>
-      <p>בהמשך מוצג פלייסהולדר לשנים. הוסיפו, שנו שם או הסירו לשוניות כך שיתאימו להיסטוריה האמיתית של TEFAP, ואז החליפו כל תמונה זמנית בתמונה אמיתית.</p>
-    </div>
-    <div class="tabs" role="tablist" id="galleryTabs">
-      <button class="tab-btn" role="tab" aria-selected="true" data-year="2013">2013</button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-year="2012">2012</button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-year="2011">2011</button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-year="2010">2010</button>
-    </div>
-    <div id="galleryPanels">
-      <!-- panels injected by JS to avoid repeating markup four times -->
-    </div>
-  </div>
-  <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scC" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#FFF7E0"/></pattern><rect width="200" height="20" fill="url(#scC)"/></svg></div> <!-- temporarily repainted yellow (suggest's color) while rsvp is hidden; restore to #EAFBF3 when rsvp comes back -->
+  <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scB" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#FFF7E0"/></pattern><rect width="200" height="20" fill="url(#scB)"/></svg></div> <!-- temporarily repainted yellow (suggest's color, the next VISIBLE section) while rsvp is hidden; restore to #EAFBF3 (rsvp's mint) once rsvp is unhidden, since rsvp sits right after this section again -->
 </section>
 
 <!-- ================= RSVP =================
@@ -327,7 +306,7 @@ footer p{margin:0 0 6px;opacity:.85;}
      Google Form embed in its place, e.g.
      <iframe src="YOUR_GOOGLE_FORM_EMBED_URL" width="100%" height="900" frameborder="0">Loading...</iframe>
 -->
-<section id="rsvp" class="section-rsvp" hidden> <!-- RSVP temporarily hidden: remove this hidden attribute and repaint scC above back to #EAFBF3 to bring it back -->
+<section id="rsvp" class="section-rsvp" hidden> <!-- RSVP temporarily hidden: remove this hidden attribute (and the matching ones on the nav link and hero CTA above) to bring it back, then repaint the details section's scallop (scB) above back to #EAFBF3 -->
   <div class="wrap section-inner">
     <div class="reveal">
       <span class="eyebrow" style="background:var(--mint);color:#fff;">כמות משתתפים</span>
@@ -361,6 +340,27 @@ footer p{margin:0 0 6px;opacity:.85;}
       <div class="form-embed">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetLyjwHBtj43QD3bcCP6MqE3BpwQR0ZDsCggAoobd1CLvRIw/viewform?embedded=true" width="100%" height="900" frameborder="0">Loading...</iframe>
       </div>
+    </div>
+  </div>
+  <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scE" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#EAF8FC"/></pattern><rect width="200" height="20" fill="url(#scE)"/></svg></div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="section-gallery">
+  <div class="wrap section-inner">
+    <div class="reveal">
+      <span class="eyebrow" style="background:var(--blue);color:#fff;">פלאשבק</span>
+      <h2>2013 ולפני כן: הארכיון</h2>
+      <p>בהמשך מוצג פלייסהולדר לשנים. הוסיפו, שנו שם או הסירו לשוניות כך שיתאימו להיסטוריה האמיתית של TEFAP, ואז החליפו כל תמונה זמנית בתמונה אמיתית.</p>
+    </div>
+    <div class="tabs" role="tablist" id="galleryTabs">
+      <button class="tab-btn" role="tab" aria-selected="true" data-year="2013">2013</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-year="2012">2012</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-year="2011">2011</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-year="2010">2010</button>
+    </div>
+    <div id="galleryPanels">
+      <!-- panels injected by JS to avoid repeating markup four times -->
     </div>
   </div>
 </section>
