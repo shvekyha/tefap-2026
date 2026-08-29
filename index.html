@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TEFAP — Teman Extended Family Annual Party</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Heebo:wght@400;500;600;700&display=swap');
 
 :root{
   --cream:#FFF9F1;
@@ -20,8 +20,8 @@
   --yellow-tint:#FFF7E0;
   --purple:#B48CFF;
   --orange:#FF9A56;
-  --font-display:'Baloo 2', sans-serif;
-  --font-body:'Quicksand', sans-serif;
+  --font-display:'Rubik', sans-serif;
+  --font-body:'Heebo', sans-serif;
 }
 
 *{box-sizing:border-box;}
@@ -111,6 +111,7 @@ section{padding:70px 0 0;}
   font-size:clamp(2.7rem,13vw,6.5rem);
   font-weight:700;letter-spacing:1px;margin-bottom:4px;
   display:flex;flex-wrap:wrap;gap:.02em;
+  direction:ltr;justify-content:flex-end;
 }
 .wordmark span:nth-child(1){color:var(--pink);}
 .wordmark span:nth-child(2){color:var(--yellow);}
@@ -239,10 +240,10 @@ footer p{margin:0 0 6px;opacity:.85;}
   <div class="topnav-inner">
     <div class="topnav-logo">TEFAP</div>
     <ul class="topnav-links">
-      <li><a href="#details">Details</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li hidden><a href="#rsvp">RSVP</a></li> <!-- RSVP temporarily hidden -->
-      <li><a href="#suggest">Suggestions</a></li>
+      <li><a href="#details">פרטים</a></li>
+      <li><a href="#gallery">גלריה</a></li>
+      <li hidden><a href="#rsvp">אישור הגעה</a></li> <!-- RSVP temporarily hidden -->
+      <li><a href="#suggest">הצעות</a></li>
     </ul>
   </div>
 </nav>
@@ -254,12 +255,12 @@ footer p{margin:0 0 6px;opacity:.85;}
   <div class="wrap hero-content">
     <div class="wordmark"><span>T</span><span>E</span><span>F</span><span>A</span><span>P</span></div>
     <div class="hero-sub">Teman Extended Family Annual Party</div>
-    <p class="hero-tagline">Last seen in 2013. Since then we've all gotten older, at least one phone number has changed, and there is a whole generation of cousins who have never met. Time to fix that.</p>
-    <div class="hero-stat">🎉 13 years since the last one. This year, TEFAP is officially back.</div>
+    <p class="hero-tagline">בפעם האחרונה זה קרה ב-2013. מאז כולנו התבגרנו, לפחות מספר טלפון אחד השתנה, ויש דור שלם של בני דודים שמעולם לא נפגשו. הגיע הזמן לתקן את זה.</p>
+    <div class="hero-stat">🎉 13 שנה מאז הפעם האחרונה. השנה, TEFAP רשמית חוזר.</div>
     <div class="hero-ctas">
-      <a href="#rsvp" class="btn btn-primary" hidden>RSVP now</a> <!-- RSVP temporarily hidden -->
-      <a href="#suggest" class="btn btn-primary">Drop a suggestion</a>
-      <a href="#gallery" class="btn btn-ghost">See old photos</a>
+      <a href="#rsvp" class="btn btn-primary" hidden>אשרו הגעה עכשיו</a> <!-- RSVP temporarily hidden -->
+      <a href="#suggest" class="btn btn-primary">השאירו הצעה</a>
+      <a href="#gallery" class="btn btn-ghost">צפו בתמונות ישנות</a>
     </div>
   </div>
   <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scA" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#FFEAF3"/></pattern><rect width="200" height="20" fill="url(#scA)"/></svg></div>
@@ -269,31 +270,31 @@ footer p{margin:0 0 6px;opacity:.85;}
 <section id="details" class="section-details">
   <div class="wrap section-inner">
     <div class="reveal">
-      <span class="eyebrow" style="background:var(--pink);color:#fff;">The basics</span>
-      <h2>Save the date (for real this time)</h2>
+      <span class="eyebrow" style="background:var(--pink);color:#fff;">הבסיס</span>
+      <h2>שריינו את התאריך (הפעם באמת)</h2>
     </div>
     <div class="details-grid">
       <div class="card reveal">
         <span class="icon">📅</span>
-        <h3>When</h3>
-        <p>Date is being finalized.</p>
-        <span class="placeholder-text">Add the date here</span>
+        <h3>מתי</h3>
+        <p>התאריך בתהליך קביעה.</p>
+        <span class="placeholder-text">הוסיפו כאן את התאריך</span>
       </div>
       <div class="card reveal">
         <span class="icon">📍</span>
-        <h3>Where</h3>
-        <p>Venue is being finalized.</p>
-        <span class="placeholder-text">Add the venue here</span>
+        <h3>איפה</h3>
+        <p>המקום בתהליך קביעה.</p>
+        <span class="placeholder-text">הוסיפו כאן את המקום</span>
       </div>
       <div class="card reveal">
         <span class="icon">🎈</span>
-        <h3>The vibe</h3>
-        <p>Same cousins, same chaos, extra confetti. Bring your appetite and your worst dance moves.</p>
+        <h3>האווירה</h3>
+        <p>אותם בני דודים, אותו באלגן, ועוד יותר קונפטי. תביאו תיאבון ואת תנועות הריקוד הכי גרועות שלכם.</p>
       </div>
       <div class="card reveal">
         <span class="icon">🍨</span>
-        <h3>What to bring</h3>
-        <p>Just yourselves. Maybe dessert. We are not made of ice cream, contrary to this website's color scheme.</p>
+        <h3>מה להביא</h3>
+        <p>רק את עצמכם. אולי קינוח. אנחנו לא עשויים מגלידה, למרות הצבעים של האתר הזה.</p>
       </div>
     </div>
   </div>
@@ -304,9 +305,9 @@ footer p{margin:0 0 6px;opacity:.85;}
 <section id="gallery" class="section-gallery">
   <div class="wrap section-inner">
     <div class="reveal">
-      <span class="eyebrow" style="background:var(--blue);color:#fff;">Flashback</span>
-      <h2>2013 and earlier: the archives</h2>
-      <p>A placeholder set of years is shown below. Add, rename, or remove tabs to match the real TEFAP history, then swap each placeholder tile for an actual photo.</p>
+      <span class="eyebrow" style="background:var(--blue);color:#fff;">פלאשבק</span>
+      <h2>2013 ולפני כן: הארכיון</h2>
+      <p>בהמשך מוצג פלייסהולדר לשנים. הוסיפו, שנו שם או הסירו לשוניות כך שיתאימו להיסטוריה האמיתית של TEFAP, ואז החליפו כל תמונה זמנית בתמונה אמיתית.</p>
     </div>
     <div class="tabs" role="tablist" id="galleryTabs">
       <button class="tab-btn" role="tab" aria-selected="true" data-year="2013">2013</button>
@@ -329,14 +330,14 @@ footer p{margin:0 0 6px;opacity:.85;}
 <section id="rsvp" class="section-rsvp" hidden> <!-- RSVP temporarily hidden: remove this hidden attribute and repaint scC above back to #EAFBF3 to bring it back -->
   <div class="wrap section-inner">
     <div class="reveal">
-      <span class="eyebrow" style="background:var(--mint);color:#fff;">Head count</span>
-      <h2>Let us know you're coming</h2>
+      <span class="eyebrow" style="background:var(--mint);color:#fff;">כמות משתתפים</span>
+      <h2>תגידו לנו שאתם מגיעים</h2>
     </div>
     <div class="rsvp-card reveal">
-      <p>Fill out the quick form below so we know how many scoops of ice cream to order.</p>
+      <p>מלאו את הטופס הקצר למטה כדי שנדע כמה כדורי גלידה להזמין.</p>
       <div class="rsvp-embed">
         <span>📋</span>
-        <p>Your Google Form goes here. Replace this placeholder with your form's embed iframe (see the HTML comment right above the RSVP section in the code for the exact snippet).</p>
+        <p>כאן ייכנס טופס הגוגל שלכם. החליפו את הפלייסהולדר הזה ב-iframe של הטופס (ראו את התגובה ב-HTML ממש מעל סקציית ה-RSVP בקוד לתבנית המדויקת).</p>
       </div>
     </div>
   </div>
@@ -351,12 +352,12 @@ footer p{margin:0 0 6px;opacity:.85;}
 <section id="suggest" class="section-suggest">
   <div class="wrap section-inner">
     <div class="reveal">
-      <span class="eyebrow" style="background:var(--yellow);color:var(--ink);">Got an idea?</span>
-      <h2>Drop it in the suggestion box</h2>
-      <p>Want a bouncy castle? A karaoke machine? A rule against a certain cousin's playlist? Tell us here.</p>
+      <span class="eyebrow" style="background:var(--yellow);color:var(--ink);">יש לכם רעיון?</span>
+      <h2>השאירו אותו בקופסת ההצעות</h2>
+      <p>רוצים מתקן קפיצות? מכונת קריוקי? כלל שאוסר על הפלייליסט של בן דוד מסוים? ספרו לנו כאן.</p>
     </div>
     <div class="rsvp-card reveal">
-      <p>Fill out the quick form below. Anonymous is fine.</p>
+      <p>מלאו את הטופס הקצר למטה. גם בעילום שם זה בסדר.</p>
       <div class="form-embed">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetLyjwHBtj43QD3bcCP6MqE3BpwQR0ZDsCggAoobd1CLvRIw/viewform?embedded=true" width="100%" height="900" frameborder="0">Loading...</iframe>
       </div>
@@ -365,8 +366,8 @@ footer p{margin:0 0 6px;opacity:.85;}
 </section>
 
 <footer>
-  <p>TEFAP is officially back. Let's not wait until 2039 for the next one.</p>
-  <p>Made with love, nostalgia, and a little bit of chaos by the Teman family.</p>
+  <p>TEFAP רשמית חוזר. שלא נחכה עד 2039 לפעם הבאה.</p>
+  <p>נוצר באהבה, בנוסטלגיה ובקצת באלגן על ידי משפחת תימן.</p>
 </footer>
 
 <script>
@@ -390,8 +391,13 @@ if('IntersectionObserver' in window){
 const galleryData = {
   '2013':6,'2012':6,'2011':6,'2010':6
 };
+// Explicit display order: plain-numeric-string object keys get silently
+// re-sorted ascending by JS engines, so Object.keys() here would put 2010
+// first regardless of source order and desync from the tab marked
+// aria-selected="true" in the HTML above.
+const galleryYears = ['2013','2012','2011','2010'];
 const panelsWrap = document.getElementById('galleryPanels');
-Object.keys(galleryData).forEach((year,i)=>{
+galleryYears.forEach((year,i)=>{
   const panel = document.createElement('div');
   panel.className = 'gallery-panel' + (i===0 ? ' active' : '');
   panel.dataset.year = year;
@@ -400,7 +406,7 @@ Object.keys(galleryData).forEach((year,i)=>{
   for(let n=0;n<galleryData[year];n++){
     const tile = document.createElement('div');
     tile.className = 'photo-placeholder';
-    tile.innerHTML = '<span>📷</span>Add a ' + year + ' photo';
+    tile.innerHTML = '<span>📷</span>הוסיפו תמונה משנת ' + year;
     grid.appendChild(tile);
   }
   panel.appendChild(grid);
