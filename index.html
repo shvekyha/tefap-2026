@@ -25,9 +25,11 @@
 }
 
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
 body{
   margin:0;
+  overflow-x:hidden;
+  width:100%;
   font-family:var(--font-body);
   color:var(--ink);
   background:var(--cream);
@@ -85,6 +87,9 @@ section{padding:70px 0 0;}
 .hero{
   position:relative;
   min-height:min(92vh,760px);
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
   display:flex;align-items:flex-end;
   color:#fff;
   overflow:hidden;
@@ -189,63 +194,6 @@ section{padding:70px 0 0;}
 
 /* ---------- suggestion box ---------- */
 .section-suggest{background:var(--yellow-tint);}
-.suggest-layout{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start;margin-top:26px;}
-.suggest-form{background:#fff;border-radius:24px;padding:30px;box-shadow:0 8px 0 rgba(58,46,57,.06);}
-.field{margin-bottom:18px;}
-.field label{display:block;font-weight:700;font-size:.88rem;margin-bottom:6px;}
-.field input[type="text"], .field textarea{
-  width:100%;border:2px solid var(--yellow);border-radius:12px;
-  padding:11px 14px;font-family:var(--font-body);font-size:.95rem;background:var(--cream);color:var(--ink);
-}
-.field textarea{min-height:110px;resize:vertical;}
-
-.captcha{margin:22px 0;}
-.captcha-label{font-weight:700;font-size:.86rem;margin-bottom:10px;}
-.captcha-track{
-  position:relative;width:100%;max-width:290px;height:56px;
-  background:var(--cream);border:2px solid var(--yellow);border-radius:999px;
-  padding:0 8px;
-}
-.captcha-cone{
-  position:absolute;right:22px;top:10px;
-  width:0;height:0;
-  border-left:16px solid transparent;
-  border-right:16px solid transparent;
-  border-top:32px solid #C88A4E;
-  opacity:.55;
-}
-.captcha-scoop{
-  position:absolute;left:8px;top:6px;width:44px;height:44px;
-  border-radius:50% 50% 50% 6px;
-  background:radial-gradient(circle at 32% 30%, rgba(255,255,255,.65), transparent 45%), var(--pink);
-  box-shadow:inset -4px -4px 8px rgba(0,0,0,.15);
-  cursor:grab;touch-action:none;
-}
-.captcha-scoop::after{
-  content:'';position:absolute;top:-5px;left:16px;width:9px;height:9px;border-radius:50%;
-  background:#C0304F;
-}
-.captcha-scoop.verified{background:radial-gradient(circle at 32% 30%, rgba(255,255,255,.65), transparent 45%), var(--mint);}
-.captcha-status{font-size:.85rem;font-weight:700;margin-top:10px;min-height:1.2em;}
-.captcha-status.ok{color:#1F8A5E;}
-.captcha-status.warn{color:#C0304F;}
-
-.submit-btn{
-  background:var(--pink);color:#fff;border:none;border-radius:999px;
-  padding:14px 26px;font-weight:700;font-size:.95rem;cursor:pointer;width:100%;
-}
-.submit-btn:disabled{background:#E8B8CB;cursor:not-allowed;}
-
-.board{background:#fff;border-radius:24px;padding:26px;box-shadow:0 8px 0 rgba(58,46,57,.06);min-height:260px;}
-.board h3{margin-bottom:16px;}
-.board-list{display:flex;flex-wrap:wrap;gap:14px;}
-.note{
-  width:calc(50% - 8px);
-  padding:16px;border-radius:4px 4px 16px 16px;
-  font-size:.88rem;box-shadow:0 4px 0 rgba(58,46,57,.08);
-}
-.note .note-name{font-weight:700;display:block;margin-bottom:6px;}
-.note-empty{opacity:.65;font-size:.9rem;}
 
 /* ---------- footer ---------- */
 footer{background:var(--ink);color:var(--cream);text-align:center;padding:36px 24px;font-size:.85rem;}
@@ -264,9 +212,7 @@ footer p{margin:0 0 6px;opacity:.85;}
   section{padding-top:52px;}
   .section-inner{padding-bottom:42px;}
   .details-grid{grid-template-columns:repeat(2,1fr);}
-  .suggest-layout{grid-template-columns:1fr;}
   .photo-grid{grid-template-columns:repeat(2,1fr);}
-  .note{width:100%;}
   .hero-content{padding-top:52px;padding-bottom:42px;}
 }
 @media (max-width:480px){
@@ -278,7 +224,7 @@ footer p{margin:0 0 6px;opacity:.85;}
   .details-grid{grid-template-columns:1fr;}
   .photo-grid{grid-template-columns:1fr 1fr;gap:10px;}
   .photo-placeholder{font-size:.78rem;}
-  .rsvp-card, .suggest-form, .board{padding:22px 18px;}
+  .rsvp-card{padding:22px 18px;}
   .hero-tagline{font-size:.95rem;}
   .hero-ctas{width:100%;}
   .hero-ctas .btn{flex:1;text-align:center;}
@@ -394,7 +340,11 @@ footer p{margin:0 0 6px;opacity:.85;}
   <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scD" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#FFF7E0"/></pattern><rect width="200" height="20" fill="url(#scD)"/></svg></div>
 </section>
 
-<!-- ================= SUGGESTION BOX ================= -->
+<!-- ================= SUGGESTION BOX =================
+     To go live: delete the .rsvp-embed placeholder div below and paste your
+     Google Form embed in its place, e.g.
+     <iframe src="YOUR_GOOGLE_FORM_EMBED_URL" width="100%" height="900" frameborder="0">Loading...</iframe>
+-->
 <section id="suggest" class="section-suggest">
   <div class="wrap section-inner">
     <div class="reveal">
@@ -402,36 +352,11 @@ footer p{margin:0 0 6px;opacity:.85;}
       <h2>Drop it in the suggestion box</h2>
       <p>Want a bouncy castle? A karaoke machine? A rule against a certain cousin's playlist? Tell us here.</p>
     </div>
-    <div class="suggest-layout">
-      <form class="suggest-form reveal" id="suggestForm">
-        <div class="field">
-          <label for="suggestName">Your name</label>
-          <input type="text" id="suggestName" placeholder="Leave blank to stay a mystery relative">
-        </div>
-        <div class="field">
-          <label for="suggestText">Your suggestion</label>
-          <textarea id="suggestText" required placeholder="Tell us your idea..."></textarea>
-        </div>
-
-        <div class="captcha">
-          <p class="captcha-label">Prove you're family, not a fruit fly: drag the scoop onto the cone</p>
-          <div class="captcha-track" id="captchaTrack">
-            <div class="captcha-cone" aria-hidden="true"></div>
-            <div class="captcha-scoop" id="captchaScoop" tabindex="0" role="slider"
-                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
-                 aria-label="Drag the scoop onto the cone to verify you are human"></div>
-          </div>
-          <p class="captcha-status" id="captchaStatus" aria-live="polite"></p>
-        </div>
-
-        <button type="submit" class="submit-btn" id="suggestSubmit" disabled>Complete the scoop check to submit</button>
-      </form>
-
-      <div class="board reveal">
-        <h3>What the family's been dropping in the box</h3>
-        <div class="board-list" id="boardList">
-          <p class="note-empty">Loading suggestions...</p>
-        </div>
+    <div class="rsvp-card reveal">
+      <p>Fill out the quick form below. Anonymous is fine.</p>
+      <div class="rsvp-embed">
+        <span>💬</span>
+        <p>Your Google Form goes here. Replace this placeholder with your form's embed iframe (see the HTML comment above this section for the exact snippet).</p>
       </div>
     </div>
   </div>
@@ -489,183 +414,6 @@ tabButtons.forEach(btn=>{
       p.classList.toggle('active', p.dataset.year === btn.dataset.year);
     });
   });
-});
-
-/* ---------- captcha: drag the scoop onto the cone ---------- */
-const track = document.getElementById('captchaTrack');
-const scoop = document.getElementById('captchaScoop');
-const status = document.getElementById('captchaStatus');
-const submitBtn = document.getElementById('suggestSubmit');
-let captchaVerified = false;
-let dragging = false;
-let startX = 0;
-let startLeft = 0;
-
-function trackBounds(){
-  const trackW = track.clientWidth;
-  const scoopW = scoop.offsetWidth;
-  const padding = 8;
-  return { min: padding, max: trackW - scoopW - padding, trackW, scoopW };
-}
-
-function setScoopLeft(px){
-  scoop.style.left = px + 'px';
-  const { min, max } = trackBounds();
-  const pct = Math.round(((px - min) / (max - min)) * 100);
-  scoop.setAttribute('aria-valuenow', Math.max(0, Math.min(100, pct)));
-}
-
-function markVerified(){
-  captchaVerified = true;
-  scoop.classList.add('verified');
-  status.textContent = 'Verified. Enjoy a virtual scoop.';
-  status.className = 'captcha-status ok';
-  submitBtn.disabled = false;
-  submitBtn.textContent = 'Drop it in the box';
-}
-
-function resetScoop(){
-  const { min } = trackBounds();
-  scoop.style.transition = 'left .35s ease';
-  setScoopLeft(min);
-  setTimeout(()=>{ scoop.style.transition = ''; }, 360);
-}
-
-function checkDrop(){
-  const { min, max } = trackBounds();
-  const currentLeft = parseFloat(scoop.style.left || min);
-  if(currentLeft >= max - 12){
-    setScoopLeft(max);
-    markVerified();
-  } else {
-    status.textContent = 'Not quite, the scoop rolled off. Try again.';
-    status.className = 'captcha-status warn';
-    resetScoop();
-  }
-}
-
-function onPointerDown(e){
-  if(captchaVerified) return;
-  dragging = true;
-  scoop.style.cursor = 'grabbing';
-  const point = e.touches ? e.touches[0] : e;
-  startX = point.clientX;
-  startLeft = parseFloat(scoop.style.left || trackBounds().min);
-  window.addEventListener('mousemove', onPointerMove);
-  window.addEventListener('touchmove', onPointerMove, {passive:false});
-  window.addEventListener('mouseup', onPointerUp);
-  window.addEventListener('touchend', onPointerUp);
-}
-function onPointerMove(e){
-  if(!dragging) return;
-  if(e.cancelable) e.preventDefault();
-  const point = e.touches ? e.touches[0] : e;
-  const delta = point.clientX - startX;
-  const { min, max } = trackBounds();
-  let newLeft = Math.min(max, Math.max(min, startLeft + delta));
-  setScoopLeft(newLeft);
-}
-function onPointerUp(){
-  if(!dragging) return;
-  dragging = false;
-  scoop.style.cursor = 'grab';
-  window.removeEventListener('mousemove', onPointerMove);
-  window.removeEventListener('touchmove', onPointerMove);
-  window.removeEventListener('mouseup', onPointerUp);
-  window.removeEventListener('touchend', onPointerUp);
-  checkDrop();
-}
-scoop.addEventListener('mousedown', onPointerDown);
-scoop.addEventListener('touchstart', onPointerDown, {passive:true});
-scoop.addEventListener('keydown', (e)=>{
-  if(captchaVerified) return;
-  const { min, max } = trackBounds();
-  const current = parseFloat(scoop.style.left || min);
-  const step = 16;
-  if(e.key === 'ArrowRight'){ setScoopLeft(Math.min(max, current + step)); }
-  else if(e.key === 'ArrowLeft'){ setScoopLeft(Math.max(min, current - step)); }
-  else if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); checkDrop(); }
-});
-window.addEventListener('resize', ()=>{ if(!captchaVerified){ const {min} = trackBounds(); setScoopLeft(min); } });
-window.addEventListener('load', ()=>{ const {min} = trackBounds(); setScoopLeft(min); });
-
-/* ---------- suggestion box storage ---------- */
-const boardList = document.getElementById('boardList');
-const noteColors = ['#FFEAF3','#EAF8FC','#EAFBF3','#FFF7E0'];
-
-function renderNotes(entries){
-  if(!entries.length){
-    boardList.innerHTML = '<p class="note-empty">The box is empty for now. Be the first to leave a note.</p>';
-    return;
-  }
-  boardList.innerHTML = '';
-  entries.forEach((entry, i)=>{
-    const note = document.createElement('div');
-    note.className = 'note';
-    note.style.background = noteColors[i % noteColors.length];
-    const safeName = (entry.name || 'A mystery relative').replace(/</g,'&lt;');
-    const safeText = (entry.text || '').replace(/</g,'&lt;');
-    note.innerHTML = '<span class="note-name">' + safeName + '</span>' + safeText;
-    boardList.appendChild(note);
-  });
-}
-
-async function loadSuggestions(){
-  try{
-    const list = await window.storage.list('suggestion:', true);
-    if(!list || !list.keys || list.keys.length === 0){
-      renderNotes([]);
-      return;
-    }
-    const entries = [];
-    for(const key of list.keys){
-      try{
-        const res = await window.storage.get(key, true);
-        if(res && res.value) entries.push(JSON.parse(res.value));
-      } catch(err){ /* skip a broken entry */ }
-    }
-    entries.sort((a,b)=> (b.timestamp||0) - (a.timestamp||0));
-    renderNotes(entries);
-  } catch(err){
-    boardList.innerHTML = '<p class="note-empty">Could not load suggestions right now. Refresh to try again.</p>';
-  }
-}
-loadSuggestions();
-
-const suggestForm = document.getElementById('suggestForm');
-suggestForm.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  if(!captchaVerified){
-    status.textContent = 'Complete the scoop check first.';
-    status.className = 'captcha-status warn';
-    return;
-  }
-  const nameVal = document.getElementById('suggestName').value.trim();
-  const textVal = document.getElementById('suggestText').value.trim();
-  if(!textVal) return;
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Saving...';
-
-  const entry = { name: nameVal, text: textVal, timestamp: Date.now() };
-  const key = 'suggestion:' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
-
-  try{
-    const result = await window.storage.set(key, JSON.stringify(entry), true);
-    if(!result){ throw new Error('save failed'); }
-    document.getElementById('suggestName').value = '';
-    document.getElementById('suggestText').value = '';
-    status.textContent = 'Thanks, your suggestion has been dropped in the box.';
-    status.className = 'captcha-status ok';
-    submitBtn.textContent = 'Drop it in the box';
-    submitBtn.disabled = false;
-    loadSuggestions();
-  } catch(err){
-    status.textContent = 'Could not save your suggestion. Try again in a moment.';
-    status.className = 'captcha-status warn';
-    submitBtn.textContent = 'Drop it in the box';
-    submitBtn.disabled = false;
-  }
 });
 </script>
 </body>
