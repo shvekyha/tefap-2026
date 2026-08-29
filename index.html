@@ -25,6 +25,7 @@
 }
 
 *{box-sizing:border-box;}
+[hidden]{display:none!important;}
 html{scroll-behavior:smooth;overflow-x:hidden;}
 body{
   margin:0;
@@ -239,7 +240,7 @@ footer p{margin:0 0 6px;opacity:.85;}
     <ul class="topnav-links">
       <li><a href="#details">Details</a></li>
       <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#rsvp">RSVP</a></li>
+      <li hidden><a href="#rsvp">RSVP</a></li> <!-- RSVP temporarily hidden -->
       <li><a href="#suggest">Suggestions</a></li>
     </ul>
   </div>
@@ -255,7 +256,7 @@ footer p{margin:0 0 6px;opacity:.85;}
     <p class="hero-tagline">Last seen in 2013. Since then we've all gotten older, at least one phone number has changed, and there is a whole generation of cousins who have never met. Time to fix that.</p>
     <div class="hero-stat">🎉 13 years since the last one. This year, TEFAP is officially back.</div>
     <div class="hero-ctas">
-      <a href="#rsvp" class="btn btn-primary">RSVP now</a>
+      <a href="#rsvp" class="btn btn-primary" hidden>RSVP now</a> <!-- RSVP temporarily hidden -->
       <a href="#gallery" class="btn btn-ghost">See old photos</a>
     </div>
   </div>
@@ -315,7 +316,7 @@ footer p{margin:0 0 6px;opacity:.85;}
       <!-- panels injected by JS to avoid repeating markup four times -->
     </div>
   </div>
-  <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scC" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#EAFBF3"/></pattern><rect width="200" height="20" fill="url(#scC)"/></svg></div>
+  <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scC" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#FFF7E0"/></pattern><rect width="200" height="20" fill="url(#scC)"/></svg></div> <!-- temporarily repainted yellow (suggest's color) while rsvp is hidden; restore to #EAFBF3 when rsvp comes back -->
 </section>
 
 <!-- ================= RSVP =================
@@ -323,7 +324,7 @@ footer p{margin:0 0 6px;opacity:.85;}
      Google Form embed in its place, e.g.
      <iframe src="YOUR_GOOGLE_FORM_EMBED_URL" width="100%" height="900" frameborder="0">Loading...</iframe>
 -->
-<section id="rsvp" class="section-rsvp">
+<section id="rsvp" class="section-rsvp" hidden> <!-- RSVP temporarily hidden: remove this hidden attribute and repaint scC above back to #EAFBF3 to bring it back -->
   <div class="wrap section-inner">
     <div class="reveal">
       <span class="eyebrow" style="background:var(--mint);color:#fff;">Head count</span>
