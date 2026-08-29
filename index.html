@@ -181,7 +181,21 @@ section{padding:70px 0 0;}
 }
 .carousel-viewport{flex:1;overflow:hidden;border-radius:16px;}
 .carousel-track{display:flex;transition:transform .4s ease;}
-.carousel-track .photo-placeholder{flex:0 0 100%;}
+.carousel-page{
+  flex:0 0 100%;
+  min-width:0; /* flex items default to min-width:auto, which lets wide grid content push this past its 100% basis */
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.carousel-page .photo-placeholder{min-width:0;} /* same auto-min-size trap, one level down, for the grid cells themselves */
+/* Keep these two breakpoints in sync with visibleCountForWidth() below. */
+@media (min-width:920px){
+  .carousel-page{grid-template-columns:repeat(6,1fr);}
+}
+@media (min-width:1024px){
+  .carousel-page{grid-template-columns:repeat(8,1fr);}
+}
 .carousel-arrow{
   flex:0 0 auto;width:44px;height:44px;border-radius:50%;
   border:2px solid var(--blue);background:#fff;color:var(--blue);
@@ -371,10 +385,10 @@ footer p{margin:0 0 6px;opacity:.85;}
       <p>בהמשך מוצג פלייסהולדר לשנים. הוסיפו, שנו שם או הסירו לשוניות כך שיתאימו להיסטוריה האמיתית של TEFAP, ואז החליפו כל תמונה זמנית בתמונה אמיתית.</p>
     </div>
     <div class="tabs" role="tablist" id="galleryTabs">
-      <button class="tab-btn" role="tab" aria-selected="true" data-year="2013">2013</button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-year="2010">2010</button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-year="2009">2009</button>
       <button class="tab-btn" role="tab" aria-selected="false" data-year="2007">2007</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-year="2009">2009</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-year="2010">2010</button>
+      <button class="tab-btn" role="tab" aria-selected="true" data-year="2013">2013</button>
     </div>
     <div id="galleryPanels">
       <!-- panels injected by JS to avoid repeating markup four times -->
@@ -410,18 +424,18 @@ if('IntersectionObserver' in window){
 // first regardless of source order and desync from the tab marked
 // aria-selected="true" in the HTML above. Newest year first so it lands on
 // the right in RTL, matching the tabs above.
-const galleryYears = ['2013','2010','2009','2007'];
+const galleryYears = ['2007','2009','2010','2013'];
 // Placeholder photo counts per year -- bump these (or wire up real <img>
 // sources inside makeTile) whenever real photos are ready. The carousel
 // doesn't care how many slides a year has.
-const galleryCounts = { '2013':9, '2010':7, '2009':6, '2007':5 };
+const galleryCounts = { '2013':40, '2010':36, '2009':32, '2007':28 };
 const tileGradients = [
   'linear-gradient(135deg,var(--purple),var(--blue))',
   'linear-gradient(135deg,var(--pink),var(--orange))',
   'linear-gradient(135deg,var(--mint),var(--blue))'
 ];
 
-function makeTile(year, i){
+function renderTile(year, i){
   const tile = document.createElement('div');
   tile.className = 'photo-placeholder';
   tile.style.background = tileGradients[i % tileGradients.length];
@@ -429,56 +443,80 @@ function makeTile(year, i){
   return tile;
 }
 
-// Endless/round carousel: clone the first and last slide onto the opposite
-// ends of the track, so clicking past either edge slides straight into a
-// pixel-identical clone, then snaps (no transition) back to the real slide
-// it duplicates. The viewer never sees a jump or a dead end either way.
+// How many tiles show at once. Keep these two numbers and their breakpoints
+// (920px, 1024px) in sync with the .carousel-page media queries above.
+function visibleCountForWidth(width){
+  if(width >= 1024) return 8;
+  if(width >= 920) return 6;
+  return 4;
+}
+
+const mod = (n, m) => ((n % m) + m) % m;
+
+// Endless/round, N-at-a-time carousel. The track holds three whole pages
+// (previous, current, next); "next"/"prev" slide by a full page, and once
+// the transition lands on the previous/next page, that page is silently
+// (no transition) rebuilt as the new "current" page from the same
+// wrapped-around items -- so it flips forward or backward forever, at
+// whatever page size the current width calls for, with no dead end.
 function setupCarousel(panel, year, count){
+  const viewport = panel.querySelector('.carousel-viewport');
   const track = panel.querySelector('.carousel-track');
   const dotsWrap = panel.querySelector('.carousel-dots');
+  const prevBtn = panel.querySelector('.carousel-prev');
+  const nextBtn = panel.querySelector('.carousel-next');
 
-  for(let i=0;i<count;i++){ track.appendChild(makeTile(year, i)); }
-  track.insertBefore(track.lastElementChild.cloneNode(true), track.firstChild);
-  track.appendChild(track.children[1].cloneNode(true));
-
-  for(let i=0;i<count;i++){
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'carousel-dot' + (i===0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'תמונה ' + (i + 1) + ' מתוך ' + count);
-    dotsWrap.appendChild(dot);
-  }
-
-  let index = 1; // DOM position; 0 and count+1 are the wraparound clones
-  const total = count + 2;
-
-  function place(animate){
-    track.style.transition = animate ? '' : 'none';
-    track.style.transform = 'translateX(' + (-index * 100) + '%)';
-    if(!animate){ void track.offsetWidth; track.style.transition = ''; }
-  }
-
-  function markDot(){
-    const real = (index - 1 + count) % count;
-    dotsWrap.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active', i === real));
-  }
-
-  function goTo(next){
-    index = next;
-    place(true);
-    markDot();
-  }
-
-  panel.querySelector('.carousel-next').addEventListener('click', ()=>goTo(index + 1));
-  panel.querySelector('.carousel-prev').addEventListener('click', ()=>goTo(index - 1));
-  dotsWrap.querySelectorAll('.carousel-dot').forEach((dot,i)=>{
-    dot.addEventListener('click', ()=>goTo(i + 1));
+  const prevPage = document.createElement('div');
+  const currentPage = document.createElement('div');
+  const nextPage = document.createElement('div');
+  [prevPage, currentPage, nextPage].forEach(p=>{
+    p.className = 'carousel-page';
+    track.appendChild(p);
   });
 
-  track.addEventListener('transitionend', ()=>{
-    if(index === total - 1){ index = 1; place(false); }
-    else if(index === 0){ index = count; place(false); }
-  });
+  let visibleCount = visibleCountForWidth(window.innerWidth);
+  let startIndex = 0; // index of the first item on the "current" page
+
+  function fillPage(pageEl, from){
+    pageEl.innerHTML = '';
+    for(let i=0;i<visibleCount;i++){ pageEl.appendChild(renderTile(year, mod(from + i, count))); }
+  }
+
+  function renderDots(){
+    dotsWrap.innerHTML = '';
+    const pages = Math.max(1, Math.ceil(count / visibleCount));
+    const activePage = mod(Math.round(startIndex / visibleCount), pages);
+    for(let p=0;p<pages;p++){
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carousel-dot' + (p === activePage ? ' active' : '');
+      dot.setAttribute('aria-label', 'עמוד ' + (p + 1) + ' מתוך ' + pages);
+      dot.addEventListener('click', ()=>{ startIndex = mod(p * visibleCount, count); layout(true); });
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  function layout(instant){
+    fillPage(prevPage, startIndex - visibleCount);
+    fillPage(currentPage, startIndex);
+    fillPage(nextPage, startIndex + visibleCount);
+    track.style.transition = instant ? 'none' : '';
+    track.style.transform = 'translateX(-100%)';
+    if(instant){ void track.offsetWidth; track.style.transition = ''; }
+    renderDots();
+  }
+
+  function step(direction){
+    track.style.transform = 'translateX(' + (direction > 0 ? '-200%' : '0%') + ')';
+    track.addEventListener('transitionend', function onEnd(){
+      track.removeEventListener('transitionend', onEnd);
+      startIndex = mod(startIndex + direction * visibleCount, count);
+      layout(true);
+    });
+  }
+
+  nextBtn.addEventListener('click', ()=>step(1));
+  prevBtn.addEventListener('click', ()=>step(-1));
 
   let touchX = null;
   track.addEventListener('touchstart', e=>{ touchX = e.touches[0].clientX; }, {passive:true});
@@ -487,28 +525,44 @@ function setupCarousel(panel, year, count){
     const dx = e.changedTouches[0].clientX - touchX;
     touchX = null;
     if(Math.abs(dx) < 40) return;
-    goTo(dx < 0 ? index + 1 : index - 1);
+    step(dx < 0 ? 1 : -1);
   });
 
-  place(false);
+  layout(true);
+
+  return {
+    onResize(){
+      const next = visibleCountForWidth(window.innerWidth);
+      if(next === visibleCount) return;
+      visibleCount = next;
+      layout(true);
+    }
+  };
 }
 
 const panelsWrap = document.getElementById('galleryPanels');
-galleryYears.forEach((year,i)=>{
+const carousels = [];
+galleryYears.forEach(year=>{
   const panel = document.createElement('div');
-  panel.className = 'gallery-panel' + (i===0 ? ' active' : '');
+  panel.className = 'gallery-panel' + (year === '2013' ? ' active' : '');
   panel.dataset.year = year;
   panel.innerHTML =
     '<div class="carousel-wrap">' +
       '<div class="carousel">' +
-        '<button type="button" class="carousel-arrow carousel-prev" aria-label="התמונה הקודמת">‹</button>' +
+        '<button type="button" class="carousel-arrow carousel-prev" aria-label="הקבוצה הקודמת">‹</button>' +
         '<div class="carousel-viewport"><div class="carousel-track"></div></div>' +
-        '<button type="button" class="carousel-arrow carousel-next" aria-label="התמונה הבאה">›</button>' +
+        '<button type="button" class="carousel-arrow carousel-next" aria-label="הקבוצה הבאה">›</button>' +
       '</div>' +
       '<div class="carousel-dots"></div>' +
     '</div>';
   panelsWrap.appendChild(panel);
-  setupCarousel(panel, year, galleryCounts[year]);
+  carousels.push(setupCarousel(panel, year, galleryCounts[year]));
+});
+
+let galleryResizeTimer = null;
+window.addEventListener('resize', ()=>{
+  clearTimeout(galleryResizeTimer);
+  galleryResizeTimer = setTimeout(()=>{ carousels.forEach(c=>c.onResize()); }, 150);
 });
 
 const tabButtons = document.querySelectorAll('#galleryTabs .tab-btn');
