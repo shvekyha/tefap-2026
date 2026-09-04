@@ -2,7 +2,7 @@
 # source backup, but not committed. The site only needs the resized
 # copies in /gallery/thumbs and /gallery/full, and gallery-index.csv
 # there maps each gallery-XXXX.jpg back to its original filename.
-/assests/
+/assests-originals/
 
 # OS junk
 .DS_Store
