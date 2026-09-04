@@ -1,0 +1,9 @@
+# Original, full-resolution camera photos (192MB) -- kept locally as the
+# source backup, but not committed. The site only needs the resized
+# copies in /gallery/thumbs and /gallery/full, and gallery-index.csv
+# there maps each gallery-XXXX.jpg back to its original filename.
+/assests/
+
+# OS junk
+.DS_Store
+Thumbs.db
