@@ -138,6 +138,53 @@ a.hero-info-item:hover{text-decoration:underline;}
 .btn-primary{background:var(--coral);color:#fff;}
 .btn-ghost{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.6);}
 
+/* ---------- shirt-color poll ---------- */
+.section-poll{background:var(--coral-tint);padding-top:16px;}
+.section-poll .section-inner{padding-bottom:8px;}
+.section-poll.voted{padding-top:10px;}
+.section-poll.voted .section-inner{padding-bottom:6px;}
+.section-poll + .section-details{padding-top:26px;}
+.poll-collapsed{display:none;}
+.poll-card{
+  background:#fff;border-radius:24px;padding:16px;
+  box-shadow:0 6px 0 rgba(58,46,57,.06);text-align:center;
+}
+.section-poll.voted .poll-card{padding:10px 16px;border-radius:16px;}
+.poll-card h2{margin-bottom:4px;}
+.poll-card p{margin-bottom:0;}
+.poll-options{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:14px 18px;margin-top:14px;
+}
+.poll-option{
+  background:none;border:none;cursor:pointer;padding:0;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:var(--font-body);width:78px;
+}
+.poll-swatch{
+  width:56px;height:56px;border-radius:50%;
+  border:3px solid #fff;box-shadow:0 0 0 2px rgba(58,46,57,.12);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.poll-option:hover .poll-swatch,.poll-option:focus-visible .poll-swatch{
+  transform:translateY(-3px) scale(1.06);
+  box-shadow:0 0 0 3px var(--coral);
+}
+.poll-option-label{font-size:.85rem;font-weight:700;color:var(--ink);}
+.poll-voted-line{
+  display:none;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+}
+.poll-voted-line.show{display:flex;}
+.poll-voted-question{font-size:1.05rem;font-weight:700;}
+.poll-voted-answer{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-display);font-weight:700;font-size:1.05rem;
+}
+.poll-voted-swatch-inline{
+  width:22px;height:22px;border-radius:50%;flex:0 0 auto;
+  border:2px solid #fff;box-shadow:0 0 0 1.5px rgba(58,46,57,.15);
+  display:inline-block;
+}
+
 /* ---------- details ---------- */
 .section-details{background:var(--coral-tint);}
 .details-grid{
@@ -255,6 +302,10 @@ footer p{margin:0 0 6px;opacity:.85;}
   .lightbox-arrow{width:40px;height:40px;font-size:1.3rem;}
   .lightbox-close{width:38px;height:38px;font-size:1.2rem;}
   .rsvp-card{padding:22px 18px;}
+  .poll-card{padding:14px;}
+  .poll-option{width:64px;}
+  .poll-swatch{width:46px;height:46px;}
+  .poll-options{gap:12px 14px;margin-top:12px;}
   .hero-tagline{font-size:.95rem;}
   .hero-ctas{width:100%;}
   .hero-ctas .btn{flex:1;text-align:center;}
@@ -300,6 +351,48 @@ footer p{margin:0 0 6px;opacity:.85;}
   </div>
   <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scA" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#f8bab3"/></pattern><rect width="200" height="20" fill="url(#scA)"/></svg></div>
 </header>
+
+<!-- ================= SHIRT POLL ================= -->
+<section id="poll" class="section-poll">
+  <div class="wrap section-inner">
+    <div class="poll-card reveal" id="pollCard">
+      <div id="pollPre">
+        <h2>איזה צבע חולצה השנה?</h2>
+        <p>עוד לא סגרנו איזה צבע יהיו החולצות השנה, ואתם תחליטו! לחצו על הצבע שהכי בא לכם, זה לוקח שתי שניות.</p>
+        <div class="poll-options" id="pollOptions">
+          <button type="button" class="poll-option" data-color="red" data-label="אדום">
+            <span class="poll-swatch" style="background:#E4483F;"></span>
+            <span class="poll-option-label">אדום</span>
+          </button>
+          <button type="button" class="poll-option" data-color="pink" data-label="ורוד">
+            <span class="poll-swatch" style="background:#F06BA8;"></span>
+            <span class="poll-option-label">ורוד</span>
+          </button>
+          <button type="button" class="poll-option" data-color="navy" data-label="כחול כהה">
+            <span class="poll-swatch" style="background:#1E3A5F;"></span>
+            <span class="poll-option-label">כחול כהה</span>
+          </button>
+          <button type="button" class="poll-option" data-color="lightgreen" data-label="ירוק בהיר">
+            <span class="poll-swatch" style="background:#B4E197;"></span>
+            <span class="poll-option-label">ירוק בהיר</span>
+          </button>
+          <button type="button" class="poll-option" data-color="grey" data-label="אפור">
+            <span class="poll-swatch" style="background:#9E9E9E;"></span>
+            <span class="poll-option-label">אפור</span>
+          </button>
+          <button type="button" class="poll-option" data-color="black" data-label="שחור">
+            <span class="poll-swatch" style="background:#1A1A1A;"></span>
+            <span class="poll-option-label">שחור</span>
+          </button>
+        </div>
+      </div>
+      <div class="poll-voted-line" id="pollVoted">
+        <span class="poll-voted-question">איזה צבע חולצה השנה?</span>
+        <span class="poll-voted-answer">הצבעתם! 🎉 <span class="poll-voted-swatch-inline" id="pollVotedSwatch"></span> <strong id="pollVotedLabel"></strong></span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ================= DETAILS ================= -->
 <section id="details" class="section-details">
@@ -511,6 +604,59 @@ lightbox.addEventListener('touchend', e=>{
   lbTouchX = null;
   if(Math.abs(dx) < 40) return;
   stepLightbox(dx < 0 ? 1 : -1);
+});
+
+/* ---------- shirt-color poll ---------- */
+// Vote storage: no backend/database here -- votes are POSTed (fire-and-forget)
+// to a Google Sheet via a tiny Apps Script Web App. Replace the placeholder
+// below with the deployed script's /exec URL to make votes actually save;
+// until then, voting still works from the visitor's point of view (the
+// localStorage lock below still applies), it just has nowhere to land.
+const POLL_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOchy645MRxVR1fr-o3q6r13BsWCXhIVy_5MEZYp9HO36ejWKMKbKyJX9AoKLHlDVnbw/exec';
+const POLL_STORAGE_KEY = 'tefap2026_shirt_vote';
+
+const pollSection = document.getElementById('poll');
+const pollPreEl = document.getElementById('pollPre');
+const pollVotedEl = document.getElementById('pollVoted');
+const pollVotedSwatch = document.getElementById('pollVotedSwatch');
+const pollVotedLabel = document.getElementById('pollVotedLabel');
+
+function showPollVoted(color, label, swatchBg){
+  pollPreEl.classList.add('poll-collapsed');
+  pollSection.classList.add('voted');
+  pollVotedSwatch.style.background = swatchBg;
+  pollVotedLabel.textContent = label;
+  pollVotedEl.classList.add('show');
+}
+
+function submitPollVote(color){
+  if(!POLL_SCRIPT_URL || POLL_SCRIPT_URL.indexOf('PASTE_') === 0) return;
+  fetch(POLL_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: new URLSearchParams({ color: color })
+  }).catch(()=>{ /* best-effort -- the vote still "counts" locally either way */ });
+}
+
+// Already voted on this device/browser? Skip straight to the voted view.
+const existingVote = localStorage.getItem(POLL_STORAGE_KEY);
+if(existingVote){
+  try {
+    const parsed = JSON.parse(existingVote);
+    showPollVoted(parsed.color, parsed.label, parsed.swatchBg);
+  } catch(err){ /* ignore a corrupted/old value and just let them vote again */ }
+}
+
+document.getElementById('pollOptions').querySelectorAll('.poll-option').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    if(localStorage.getItem(POLL_STORAGE_KEY)) return; // guard against a double-click race
+    const color = btn.dataset.color;
+    const label = btn.dataset.label;
+    const swatchBg = btn.querySelector('.poll-swatch').style.background;
+    localStorage.setItem(POLL_STORAGE_KEY, JSON.stringify({ color, label, swatchBg }));
+    submitPollVote(color);
+    showPollVoted(color, label, swatchBg);
+  });
 });
 </script>
 </body>
