@@ -109,6 +109,7 @@ section{padding:70px 0 0;}
   filter:drop-shadow(0 3px 14px rgba(0,0,0,.55));
 }
 .hero-tagline{max-width:520px;margin-left:auto;margin-right:auto;font-size:1.05rem;opacity:.95;}
+.hero-tagline-highlight{display:block;margin-top:8px;font-size:1.25rem;font-weight:800;}
 .hero-stat{
   display:inline-block;margin:18px 0 26px;
   background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);
@@ -120,16 +121,18 @@ section{padding:70px 0 0;}
   background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);
   border-radius:16px;padding:14px 22px;
 }
-.hero-info-item{font-weight:700;font-size:.98rem;text-decoration:none;color:#fff;}
+.hero-info-item{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:1.1rem;text-decoration:none;color:#fff;}
+.hero-info-item svg{width:20px;height:20px;flex:0 0 auto;}
 a.hero-info-item:hover{text-decoration:underline;}
 .hero-info-divider{opacity:.45;font-weight:400;}
 .hero-info-cal{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--coral);color:#fff;padding:7px 16px;border-radius:999px;
-  font-weight:700;font-size:.85rem;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--coral);color:#fff;padding:8px 18px;border-radius:999px;
+  font-weight:700;font-size:.95rem;text-decoration:none;
 }
+.hero-info-cal svg{width:18px;height:18px;flex:0 0 auto;}
 .hero-info-cal:hover{transform:translateY(-1px);}
-.hero-socials{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin:0 0 20px;}
+.hero-socials{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin:0 0 20px;}
 .whatsapp-cta{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
   background:#25D366;color:#fff;font-weight:700;font-size:.95rem;
@@ -151,62 +154,26 @@ a.hero-info-item:hover{text-decoration:underline;}
 }
 .instagram-cta:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.18);}
 .instagram-cta svg{width:22px;height:22px;flex:0 0 auto;}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
-.btn{
-  display:inline-block;text-decoration:none;font-weight:700;font-size:.95rem;
-  padding:13px 22px;border-radius:999px;border:none;cursor:pointer;
-  transition:transform .15s ease;
+.hero-gallery-cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.6);
+  font-weight:700;font-size:.95rem;font-family:var(--font-body);text-decoration:none;
+  padding:9px 22px;border-radius:999px;
+  transition:transform .15s ease,background .15s ease;
 }
-.btn:hover{transform:translateY(-2px);}
-.btn-primary{background:var(--coral);color:#fff;}
-.btn-ghost{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.6);}
-
-/* ---------- shirt-color poll ---------- */
-.section-poll{background:var(--coral-tint);padding-top:16px;}
-.section-poll .section-inner{padding-bottom:8px;}
-.section-poll.voted{padding-top:10px;}
-.section-poll.voted .section-inner{padding-bottom:6px;}
-.section-poll + .section-details{padding-top:26px;}
-.poll-collapsed{display:none;}
-.poll-card{
-  background:#fff;border-radius:24px;padding:16px;
-  box-shadow:0 6px 0 rgba(58,46,57,.06);text-align:center;
-}
-.section-poll.voted .poll-card{padding:10px 16px;border-radius:16px;}
-.poll-card h2{margin-bottom:4px;}
-.poll-card p{margin-bottom:0;}
-.poll-options{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:14px 18px;margin-top:14px;
-}
-.poll-option{
-  background:none;border:none;cursor:pointer;padding:0;
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  font-family:var(--font-body);width:78px;
-}
-.poll-swatch{
-  width:56px;height:56px;border-radius:50%;
-  border:3px solid #fff;box-shadow:0 0 0 2px rgba(58,46,57,.12);
+.hero-gallery-cta:hover{transform:translateY(-2px);background:rgba(255,255,255,.25);}
+.hero-gallery-cta svg{width:22px;height:22px;flex:0 0 auto;}
+.hero-rsvp-cta{margin:4px 0 22px;}
+.btn-rsvp{
+  display:inline-block;text-decoration:none;font-weight:800;font-size:1.05rem;
+  font-family:var(--font-body);
+  background:var(--amber);color:var(--ink);
+  padding:15px 34px;border-radius:999px;
+  box-shadow:0 5px 0 rgba(0,0,0,.18);
   transition:transform .15s ease,box-shadow .15s ease;
 }
-.poll-option:hover .poll-swatch,.poll-option:focus-visible .poll-swatch{
-  transform:translateY(-3px) scale(1.06);
-  box-shadow:0 0 0 3px var(--coral);
-}
-.poll-option-label{font-size:.85rem;font-weight:700;color:var(--ink);}
-.poll-voted-line{
-  display:none;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
-}
-.poll-voted-line.show{display:flex;}
-.poll-voted-question{font-size:1.05rem;font-weight:700;}
-.poll-voted-answer{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-display);font-weight:700;font-size:1.05rem;
-}
-.poll-voted-swatch-inline{
-  width:22px;height:22px;border-radius:50%;flex:0 0 auto;
-  border:2px solid #fff;box-shadow:0 0 0 1.5px rgba(58,46,57,.15);
-  display:inline-block;
-}
+.btn-rsvp:hover{transform:translateY(-2px);box-shadow:0 7px 0 rgba(0,0,0,.2);}
+.hero-rsvp-cta .btn-rsvp{font-size:1.3rem;font-weight:800;padding:16px 44px;}
 
 /* ---------- details ---------- */
 .section-details{background:var(--coral-tint);}
@@ -277,18 +244,136 @@ a.hero-info-item:hover{text-decoration:underline;}
 }
 
 /* ---------- RSVP ---------- */
-.section-rsvp{background:var(--teal-tint);}
+.section-rsvp{background:var(--amber-tint);}
 .rsvp-card{
   background:#fff;border-radius:24px;padding:34px;
   box-shadow:0 8px 0 rgba(58,46,57,.06);
 }
-.rsvp-embed{
-  margin-top:20px;border-radius:16px;border:2.5px dashed var(--teal);
-  background:var(--cream);min-height:260px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
 }
-.rsvp-embed span{font-size:2rem;margin-bottom:10px;}
-.rsvp-embed p{max-width:400px;font-size:.92rem;color:var(--ink);opacity:.8;margin:0;}
+.rsvp-form{display:flex;flex-direction:column;gap:22px;}
+.rsvp-intro{margin:0;}
+.rsvp-field{display:flex;flex-direction:column;gap:8px;border:none;margin:0;padding:0;min-width:0;}
+.rsvp-label{font-weight:800;font-size:1rem;color:var(--ink);padding:0;}
+.req{color:var(--coral);}
+.rsvp-input,.rsvp-select{
+  font:inherit;font-size:1rem;color:var(--ink);
+  background:#fff;border:2px solid rgba(58,46,57,.15);border-radius:12px;
+  padding:11px 14px;width:100%;box-sizing:border-box;
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+.rsvp-input{padding:7px 12px;}
+/* compact number dropdowns with our own arrow, so it can sit 12px in from the left edge */
+.rsvp-select{
+  width:auto;min-width:78px;padding:5px 12px 5px 34px;cursor:pointer;
+  appearance:none;-webkit-appearance:none;-moz-appearance:none;
+  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%233A2E39' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat left 12px center / 12px 12px;
+}
+.rsvp-input:focus,.rsvp-select:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(238,166,54,.3);}
+.rsvp-choices{display:flex;flex-wrap:wrap;gap:10px;}
+.rsvp-choice{position:relative;cursor:pointer;}
+.rsvp-choice input{position:absolute;opacity:0;width:1px;height:1px;margin:0;}
+.rsvp-choice span{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:10px 18px;border-radius:999px;
+  border:2px solid rgba(58,46,57,.15);background:#fff;color:var(--ink);
+  font-weight:700;font-size:.95rem;text-align:center;
+  transition:background .15s ease,border-color .15s ease;
+}
+.rsvp-choices.big .rsvp-choice{flex:1 1 200px;}
+.rsvp-choices.big .rsvp-choice span{padding:15px 20px;font-size:1.05rem;border-radius:16px;}
+.rsvp-choice:hover span{border-color:var(--amber);}
+.rsvp-choice input:checked + span{background:var(--amber);border-color:var(--amber);}
+.rsvp-choice input[type="checkbox"]:checked + span::before{content:'✓';}
+.rsvp-emoji{font-style:normal;font-size:1.1rem;line-height:1;}
+.rsvp-choice input:focus-visible + span{box-shadow:0 0 0 3px rgba(58,46,57,.35);}
+.rsvp-coming{
+  display:flex;flex-direction:column;gap:22px;
+  background:var(--cream);border-radius:18px;padding:20px;
+  animation:rsvpReveal .3s ease;
+}
+@keyframes rsvpReveal{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+.rsvp-row{display:flex;flex-wrap:wrap;gap:14px 40px;}
+/* desktop: each dropdown sits beside its label (to its left, in RTL) */
+.rsvp-row .rsvp-field{flex-direction:row;align-items:center;flex-wrap:wrap;gap:6px 12px;}
+.rsvp-row .rsvp-error{flex-basis:100%;}
+.rsvp-other{display:flex;align-items:center;gap:10px;flex:1 1 260px;}
+.rsvp-other .rsvp-input{padding:9px 12px;font-size:.92rem;min-width:0;}
+.rsvp-check{
+  display:flex;align-items:flex-start;gap:12px;cursor:pointer;
+  background:#fff;border:2px dashed var(--amber);border-radius:14px;
+  padding:14px 16px;font-weight:700;line-height:1.5;
+}
+.rsvp-check input{width:22px;height:22px;flex:0 0 auto;margin:2px 0 0;accent-color:#2e9e57;}
+.rsvp-social{border-top:2px dashed rgba(58,46,57,.12);padding-top:20px;}
+/* floated so the title stops sitting on the fieldset's dashed top border */
+.rsvp-social-title{
+  float:right;width:100%;padding:0;
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--font-display);font-weight:800;font-size:1.3rem;color:var(--ink);
+}
+/* three equal-width options side by side */
+.rsvp-social .rsvp-choices{flex-wrap:nowrap;align-items:stretch;}
+.rsvp-social .rsvp-choice{flex:1 1 0;min-width:0;}
+.rsvp-social .rsvp-choice span{height:100%;box-sizing:border-box;border-radius:14px;}
+.rsvp-social-link{
+  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+  width:40px;height:40px;border-radius:50%;color:#fff;
+  box-shadow:0 3px 0 rgba(0,0,0,.12);transition:transform .15s ease;
+}
+.rsvp-social-link:hover{transform:translateY(-2px);}
+.rsvp-social-link svg{width:22px;height:22px;}
+.rsvp-social-link.wa{background:#25D366;}
+.rsvp-social-link.ig{background:radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);}
+.rsvp-error{color:#c8323d;font-size:.86rem;font-weight:700;margin:0;}
+.rsvp-error:empty{display:none;}
+/* honeypot fields: invisible to people, still filled in by naive bots */
+.hp-field{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;clip-path:inset(50%);}
+/* slide-to-verify */
+.slide-track{
+  position:relative;height:52px;border-radius:999px;
+  background:var(--cream);border:2px solid rgba(58,46,57,.14);
+  overflow:hidden;user-select:none;-webkit-user-select:none;
+}
+.slide-fill{position:absolute;top:0;bottom:0;right:0;width:0;background:var(--amber-tint);transition:width .25s ease;}
+.slide-text{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:0 56px;font-size:.9rem;font-weight:700;color:rgba(58,46,57,.6);
+  text-align:center;line-height:1.2;pointer-events:none;
+}
+.slide-knob{
+  position:absolute;top:3px;right:3px;width:42px;height:42px;padding:0;
+  border:2px solid var(--amber);border-radius:50%;background:#fff;color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  cursor:grab;touch-action:none;box-shadow:0 3px 0 rgba(0,0,0,.15);
+  transition:transform .25s ease;
+}
+.parrot{display:block;font-size:1.55rem;line-height:1;animation:parrotBob .9s ease-in-out infinite;}
+@keyframes parrotBob{
+  0%,100%{transform:rotate(-10deg) translateY(0);}
+  50%{transform:rotate(10deg) translateY(-3px);}
+}
+.slide-track.dragging .parrot{animation-duration:.35s;}
+.slide-knob:focus-visible{outline:none;box-shadow:0 0 0 3px var(--ink);}
+.slide-track.dragging .slide-knob,.slide-track.dragging .slide-fill{transition:none;}
+.slide-track.dragging .slide-knob{cursor:grabbing;}
+.slide-track.verified{border-color:var(--teal);}
+.slide-track.verified .slide-fill{background:var(--teal-tint);}
+.slide-track.verified .slide-text{color:var(--ink);}
+.slide-track.verified .slide-knob{border-color:var(--teal);cursor:default;}
+.slide-track.verified .parrot{animation:none;}
+.rsvp-submit{border:none;cursor:pointer;align-self:center;min-width:220px;}
+.rsvp-submit:disabled{opacity:.6;cursor:wait;transform:none;}
+.rsvp-status{margin:0;text-align:center;font-weight:700;}
+.rsvp-status:empty{display:none;}
+.rsvp-status.error{color:#c8323d;}
+.rsvp-done{text-align:center;padding:10px 0;}
+.rsvp-done-emoji{display:block;font-size:2.6rem;margin-bottom:8px;}
+.rsvp-done h3{font-size:1.35rem;margin-bottom:6px;}
+.rsvp-done p{margin:0 0 6px;}
+.rsvp-again{font:inherit;font-weight:700;background:none;border:none;color:var(--teal);text-decoration:underline;cursor:pointer;padding:4px;}
 /* ---------- footer ---------- */
 footer{background:var(--ink);color:var(--cream);text-align:center;padding:36px 24px;font-size:.85rem;}
 footer p{margin:0 0 6px;opacity:.85;}
@@ -298,6 +383,7 @@ footer p{margin:0 0 6px;opacity:.85;}
 .reveal.in-view{opacity:1;transform:translateY(0);}
 @media (prefers-reduced-motion: reduce){
   .reveal{opacity:1;transform:none;transition:none;}
+  .parrot{animation:none;}
   html{scroll-behavior:auto;}
 }
 
@@ -319,15 +405,21 @@ footer p{margin:0 0 6px;opacity:.85;}
   .lightbox-arrow{width:40px;height:40px;font-size:1.3rem;}
   .lightbox-close{width:38px;height:38px;font-size:1.2rem;}
   .rsvp-card{padding:22px 18px;}
-  .poll-card{padding:14px;}
-  .poll-option{width:64px;}
-  .poll-swatch{width:46px;height:46px;}
-  .poll-options{gap:12px 14px;margin-top:12px;}
+  .rsvp-row{flex-direction:column;gap:16px;}
+  .rsvp-row .rsvp-field{flex-direction:column;align-items:flex-start;}
+  .rsvp-coming{padding:16px;}
+  .rsvp-social-title{font-size:1.15rem;gap:8px;}
+  .rsvp-social-link{width:34px;height:34px;}
+  .rsvp-social-link svg{width:19px;height:19px;}
+  .rsvp-social .rsvp-choices{flex-direction:column;}
+  .rsvp-social .rsvp-choice{flex:0 0 auto;}
   .hero-tagline{font-size:.95rem;}
-  .hero-ctas{width:100%;}
-  .hero-ctas .btn{flex:1;text-align:center;}
+  .hero-tagline-highlight{font-size:1.12rem;}
+  .hero-rsvp-cta .btn-rsvp{font-size:1.2rem;padding:15px 38px;}
+  .hero-socials{flex-direction:column;align-items:stretch;max-width:320px;margin-left:auto;margin-right:auto;}
   .hero-info-ribbon{gap:10px 14px;padding:12px 16px;}
-  .hero-info-item{font-size:.88rem;}
+  .hero-info-item{font-size:.98rem;}
+  .hero-info-divider{display:none;}
 }
 </style>
 </head>
@@ -338,7 +430,7 @@ footer p{margin:0 0 6px;opacity:.85;}
     <img class="topnav-logo" src="images/logo-nav.png" width="520" height="114" alt="TEFAP 50/80 2026">
     <ul class="topnav-links">
       <li><a href="#details">פרטים</a></li>
-      <li hidden><a href="#rsvp">אישור הגעה</a></li> <!-- RSVP temporarily hidden -->
+      <li><a href="#rsvp">אשרו הגעה</a></li>
       <li><a href="#gallery">גלריה</a></li>
     </ul>
   </div>
@@ -350,15 +442,16 @@ footer p{margin:0 0 6px;opacity:.85;}
   <div class="hero-scrim"></div>
   <div class="wrap hero-content">
     <img class="hero-logo" src="images/logo-hero.png" width="545" height="155" alt="TEFAP 50/80 2026 — Teman Extended Family Annual Party">
-    <p class="hero-tagline">בפעם האחרונה זה קרה ב-2013. מאז כולנו התבגרנו, השתננו, עברנו דירות ושינינו סטאטוס. וכמובן שיש דור שלם של ילדים שמעולם לא נפגשו וחברים חדשים שלא יודעים מה זה TEFAP. הגיע הזמן לתקן את זה.</p>
-    <div class="hero-stat">🎉 13 שנה מאז הפעם האחרונה. השנה, מסיבת ה-TEFAP רשמית חוזרת!<br>והפעם חוגגים 50 שנה ו-80 שנה!</div>
-    <div class="hero-info-ribbon">
-      <span class="hero-info-item">📅 שבת, 17.10.2026 · 15:00</span>
-      <span class="hero-info-divider">|</span>
-      <a class="hero-info-item" href="https://www.google.com/maps/search/?api=1&amp;query=%D7%A6%D7%A4%D7%A0%D7%99%D7%94%2026%2C%20%D7%A4%D7%A8%D7%93%D7%A1%20%D7%97%D7%A0%D7%94" target="_blank" rel="noopener">📍 צפניה 26, פרדס חנה</a>
-      <a class="hero-info-cal" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FTEFAP%2F%2FTEFAP%20Party%202026%2F%2FHE%0D%0ACALSCALE%3AGREGORIAN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Atefap-2026-party%40tefap.family%0D%0ADTSTAMP%3A20260904T000000Z%0D%0ADTSTART%3A20261017T120000Z%0D%0ADTEND%3A20261017T205900Z%0D%0ASUMMARY%3A%D7%9E%D7%A1%D7%99%D7%91%D7%AA%20TEFAP%2050%2F80%20%E2%80%93%20Teman%20Extended%20Family%20Annual%20Party%0D%0ALOCATION%3A%D7%A6%D7%A4%D7%A0%D7%99%D7%94%2026%5C%2C%20%D7%A4%D7%A8%D7%93%D7%A1%20%D7%97%D7%A0%D7%94%0D%0ADESCRIPTION%3A%D7%9E%D7%A1%D7%99%D7%91%D7%AA%20%D7%94-TEFAP%20%D7%97%D7%95%D7%96%D7%A8%D7%AA%20%D7%90%D7%97%D7%A8%D7%99%2013%20%D7%A9%D7%A0%D7%94%21%20%D7%A9%D7%91%D7%AA%2017.10.2026%20%D7%9E%D7%94%D7%A9%D7%A2%D7%94%2015%3A00%5C%2C%20%D7%91%D7%91%D7%99%D7%AA%20%D7%9E%D7%A9%D7%A4%D7%97%D7%AA%20%D7%AA%D7%99%D7%9E%D7%9F%5C%2C%20%D7%A6%D7%A4%D7%A0%D7%99%D7%94%2026%5C%2C%20%D7%A4%D7%A8%D7%93%D7%A1%20%D7%97%D7%A0%D7%94.%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%3A%20https%3A%2F%2Ftefap.family%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR%0D%0A" download="TEFAP-2026.ics">🗓️ הוסיפו ליומן</a>
+    <p class="hero-tagline">בפעם האחרונה זה קרה ב-2013. מאז כולנו התבגרנו, השתננו, עברנו דירות ושינינו סטאטוס. וכמובן שיש דור שלם של ילדים שמעולם לא נפגשו וחברים חדשים שלא יודעים מה זה TEFAP. הגיע הזמן לתקן את זה.<span class="hero-tagline-highlight">והפעם חוגגים 50 שנה ו-80 שנה!</span></p>
+    <div class="hero-rsvp-cta">
+      <a href="#rsvp" class="btn-rsvp">אשרו הגעה!</a>
     </div>
-    <p class="hero-tagline">טופס אישור ההגעה יפורסם בקרוב. בינתיים, נשמח לקבל הצעות ורעיונות לשלב במסיבה השנה וכן נשמח לשמוע אם בא לכם להתנדב לעזור לנו בארגון ובאירוע עצמו.</p>
+    <div class="hero-info-ribbon">
+      <span class="hero-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>שבת, 17.10.2026 · 15:00</span></span>
+      <span class="hero-info-divider">|</span>
+      <a class="hero-info-item" href="https://www.google.com/maps/search/?api=1&amp;query=%D7%A6%D7%A4%D7%A0%D7%99%D7%94%2026%2C%20%D7%A4%D7%A8%D7%93%D7%A1%20%D7%97%D7%A0%D7%94" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>צפניה 26, פרדס חנה</span></a>
+      <a class="hero-info-cal" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FTEFAP%2F%2FTEFAP%20Party%202026%2F%2FHE%0D%0ACALSCALE%3AGREGORIAN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Atefap-2026-party%40tefap.family%0D%0ADTSTAMP%3A20260904T000000Z%0D%0ADTSTART%3A20261017T120000Z%0D%0ADTEND%3A20261017T205900Z%0D%0ASUMMARY%3A%D7%9E%D7%A1%D7%99%D7%91%D7%AA%20TEFAP%2050%2F80%20%E2%80%93%20Teman%20Extended%20Family%20Annual%20Party%0D%0ALOCATION%3A%D7%A6%D7%A4%D7%A0%D7%99%D7%94%2026%5C%2C%20%D7%A4%D7%A8%D7%93%D7%A1%20%D7%97%D7%A0%D7%94%0D%0ADESCRIPTION%3A%D7%9E%D7%A1%D7%99%D7%91%D7%AA%20%D7%94-TEFAP%20%D7%97%D7%95%D7%96%D7%A8%D7%AA%20%D7%90%D7%97%D7%A8%D7%99%2013%20%D7%A9%D7%A0%D7%94%21%20%D7%A9%D7%91%D7%AA%2017.10.2026%20%D7%9E%D7%94%D7%A9%D7%A2%D7%94%2015%3A00%5C%2C%20%D7%91%D7%91%D7%99%D7%AA%20%D7%9E%D7%A9%D7%A4%D7%97%D7%AA%20%D7%AA%D7%99%D7%9E%D7%9F%5C%2C%20%D7%A6%D7%A4%D7%A0%D7%99%D7%94%2026%5C%2C%20%D7%A4%D7%A8%D7%93%D7%A1%20%D7%97%D7%A0%D7%94.%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%3A%20https%3A%2F%2Ftefap.family%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR%0D%0A" download="TEFAP-2026.ics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="13.5" x2="12" y2="19"/><line x1="9.25" y1="16.25" x2="14.75" y2="16.25"/></svg><span>הוסיפו ליומן</span></a>
+    </div>
     <div class="hero-socials">
       <a class="whatsapp-cta" href="https://chat.whatsapp.com/Frrkw4ibIWpI23aEhEBx4R" target="_blank" rel="noopener">
         <svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.004 3C9.377 3 4 8.373 4 15c0 2.34.65 4.53 1.78 6.4L4 29l7.78-1.74A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.63 28 15S22.63 3 16.004 3Zm0 21.8c-1.86 0-3.6-.5-5.1-1.37l-.365-.21-4.62 1.03 1.05-4.5-.24-.38A9.77 9.77 0 0 1 5.2 15c0-5.96 4.85-10.8 10.804-10.8S26.8 9.04 26.8 15 21.96 24.8 16.004 24.8Zm5.9-8.1c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.26-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.59-.95-.85-1.6-1.9-1.78-2.22-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.73-1.76-1-2.42-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.66s1.14 3.08 1.3 3.29c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.53 1.81.68.76.24 1.45.21 2 .13.61-.09 1.9-.77 2.17-1.52.27-.75.27-1.39.19-1.52-.08-.14-.29-.21-.61-.37Z"/></svg>
@@ -372,56 +465,14 @@ footer p{margin:0 0 6px;opacity:.85;}
         </svg>
         <span>עקבו אחרינו באינסטגרם</span>
       </a>
-    </div>
-    <div class="hero-ctas">
-      <a href="#rsvp" class="btn btn-primary" hidden>אשרו הגעה עכשיו</a> <!-- RSVP temporarily hidden -->
-      <a href="#gallery" class="btn btn-ghost">צפו בתמונות ישנות</a>
+      <a class="hero-gallery-cta" href="#gallery">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>צפו בתמונות ישנות</span>
+      </a>
     </div>
   </div>
   <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scA" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#f8bab3"/></pattern><rect width="200" height="20" fill="url(#scA)"/></svg></div>
 </header>
-
-<!-- ================= SHIRT POLL ================= -->
-<section id="poll" class="section-poll">
-  <div class="wrap section-inner">
-    <div class="poll-card reveal" id="pollCard">
-      <div id="pollPre">
-        <h2>איזה צבע חולצה השנה?</h2>
-        <p>עוד לא סגרנו איזה צבע יהיו החולצות השנה, ואתם תחליטו! לחצו על הצבע שהכי בא לכם, זה לוקח שתי שניות.</p>
-        <div class="poll-options" id="pollOptions">
-          <button type="button" class="poll-option" data-color="red" data-label="אדום">
-            <span class="poll-swatch" style="background:#E4483F;"></span>
-            <span class="poll-option-label">אדום</span>
-          </button>
-          <button type="button" class="poll-option" data-color="pink" data-label="ורוד">
-            <span class="poll-swatch" style="background:#F06BA8;"></span>
-            <span class="poll-option-label">ורוד</span>
-          </button>
-          <button type="button" class="poll-option" data-color="navy" data-label="כחול כהה">
-            <span class="poll-swatch" style="background:#1E3A5F;"></span>
-            <span class="poll-option-label">כחול כהה</span>
-          </button>
-          <button type="button" class="poll-option" data-color="lightgreen" data-label="ירוק בהיר">
-            <span class="poll-swatch" style="background:#B4E197;"></span>
-            <span class="poll-option-label">ירוק בהיר</span>
-          </button>
-          <button type="button" class="poll-option" data-color="grey" data-label="אפור">
-            <span class="poll-swatch" style="background:#9E9E9E;"></span>
-            <span class="poll-option-label">אפור</span>
-          </button>
-          <button type="button" class="poll-option" data-color="black" data-label="שחור">
-            <span class="poll-swatch" style="background:#1A1A1A;"></span>
-            <span class="poll-option-label">שחור</span>
-          </button>
-        </div>
-      </div>
-      <div class="poll-voted-line" id="pollVoted">
-        <span class="poll-voted-question">איזה צבע חולצה השנה?</span>
-        <span class="poll-voted-answer">הצבעתם! 🎉 <span class="poll-voted-swatch-inline" id="pollVotedSwatch"></span> <strong id="pollVotedLabel"></strong></span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ================= DETAILS ================= -->
 <section id="details" class="section-details">
@@ -457,25 +508,135 @@ footer p{margin:0 0 6px;opacity:.85;}
       </div>
     </div>
   </div>
-  <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scB" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#aed2d7"/></pattern><rect width="200" height="20" fill="url(#scB)"/></svg></div> <!-- matches gallery's teal-tint, the next VISIBLE section while rsvp stays hidden; rsvp and gallery share the same teal-tint so this stays correct once rsvp is unhidden too -->
+  <div class="scallop"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><pattern id="scB" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="0" r="10" fill="#f8d7a9"/></pattern><rect width="200" height="20" fill="url(#scB)"/></svg></div> <!-- matches rsvp's amber-tint background, the section right after details -->
 </section>
 
 <!-- ================= RSVP =================
-     To go live: delete the .rsvp-embed placeholder div below and paste your
-     Google Form embed in its place, e.g.
-     <iframe src="YOUR_GOOGLE_FORM_EMBED_URL" width="100%" height="900" frameborder="0">Loading...</iframe>
+     Posts to its own Google Apps Script Web App (apps-script/rsvp.gs in this
+     repo, attached to a dedicated RSVP Google Sheet), which writes each
+     submission as a row in that sheet's "RSVP" tab.
 -->
-<section id="rsvp" class="section-rsvp" hidden> <!-- RSVP temporarily hidden: remove this hidden attribute (and the matching ones on the nav link and hero CTA above) to bring it back -->
+<section id="rsvp" class="section-rsvp">
   <div class="wrap section-inner">
     <div class="reveal">
-      <span class="eyebrow" style="background:var(--teal);color:#fff;">כמות משתתפים</span>
+      <span class="eyebrow" style="background:var(--amber);color:var(--ink);">אז מגיעים או מה?</span>
       <h2>אשרו לנו שאתם מגיעים</h2>
     </div>
     <div class="rsvp-card reveal">
-      <p>מלאו את הטופס הקצר למטה כדי שנדע להיערך לכמויות.</p>
-      <div class="rsvp-embed">
-        <span>📋</span>
-        <p>כאן ייכנס טופס הגוגל שלכם. החליפו את הפלייסהולדר הזה ב-iframe של הטופס (ראו את התגובה ב-HTML ממש מעל סקציית ה-RSVP בקוד לתבנית המדויקת).</p>
+      <form class="rsvp-form" id="rsvpForm" novalidate>
+        <p class="rsvp-intro">מלאו את הטופס הקצר למטה כדי שנדע להיערך לכמויות.</p>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label" for="rsvpName">שם מלא <span class="req" aria-hidden="true">*</span></label>
+          <input class="rsvp-input" type="text" id="rsvpName" name="fullName" maxlength="80" autocomplete="name" required>
+          <p class="rsvp-error" data-error-for="name" aria-live="polite"></p>
+        </div>
+
+        <fieldset class="rsvp-field">
+          <legend class="sr-only">האם אתם מגיעים?</legend>
+          <div class="rsvp-choices big">
+            <label class="rsvp-choice"><input type="radio" name="attending" value="yes" required><span>ברור שמגיעים!</span></label>
+            <label class="rsvp-choice"><input type="radio" name="attending" value="no"><span>לצערנו לא נוכל השנה :(</span></label>
+          </div>
+          <p class="rsvp-error" data-error-for="attending" aria-live="polite"></p>
+        </fieldset>
+
+        <div class="rsvp-coming" id="rsvpComing" hidden>
+          <div class="rsvp-row">
+            <div class="rsvp-field">
+              <label class="rsvp-label" for="rsvpAdults">כמות מבוגרים (בני 12 ומעלה) <span class="req" aria-hidden="true">*</span></label>
+              <select class="rsvp-select" id="rsvpAdults" name="adults">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+              <p class="rsvp-error" data-error-for="adults" aria-live="polite"></p>
+            </div>
+            <div class="rsvp-field">
+              <label class="rsvp-label" for="rsvpKids">כמות ילדים (מתחת לגיל 12)</label>
+              <select class="rsvp-select" id="rsvpKids" name="kids">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+          </div>
+
+          <fieldset class="rsvp-field">
+            <legend class="rsvp-label">מה אנחנו מביאים?</legend>
+            <div class="rsvp-choices">
+              <label class="rsvp-choice"><input type="checkbox" name="bring" value="drinks"><span><i class="rsvp-emoji" aria-hidden="true">🥤</i>שתיה</span></label>
+              <label class="rsvp-choice"><input type="checkbox" name="bring" value="salad"><span><i class="rsvp-emoji" aria-hidden="true">🥗</i>סלט</span></label>
+              <label class="rsvp-choice"><input type="checkbox" name="bring" value="side"><span><i class="rsvp-emoji" aria-hidden="true">🍚</i>תוספת</span></label>
+              <label class="rsvp-choice"><input type="checkbox" name="bring" value="dessert"><span><i class="rsvp-emoji" aria-hidden="true">🍰</i>קינוח</span></label>
+              <div class="rsvp-other">
+                <label class="rsvp-choice"><input type="checkbox" name="bring" value="other" id="rsvpBringOther"><span><i class="rsvp-emoji" aria-hidden="true">🍽️</i>אחר</span></label>
+                <input class="rsvp-input" type="text" id="rsvpBringOtherText" maxlength="50" placeholder="פרטו כאן" aria-label="אחר: פרטו מה תביאו">
+              </div>
+            </div>
+          </fieldset>
+
+          <label class="rsvp-check">
+            <input type="checkbox" id="rsvpVolunteer" name="volunteer">
+            <span>יש לנו עוד ציוד להביא או דוכן להרים או פעילות להעביר או נוכל לעזור בתאורה/הגברה/הקמת מדורה - דברו איתנו בהקדם!!</span>
+          </label>
+        </div>
+
+        <fieldset class="rsvp-field rsvp-social" id="rsvpSocial" hidden>
+          <legend class="rsvp-social-title">
+            <span>הישארו מעודכנים!</span>
+            <a class="rsvp-social-link wa" href="https://chat.whatsapp.com/Frrkw4ibIWpI23aEhEBx4R" target="_blank" rel="noopener" aria-label="לקבוצת הוואטסאפ"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.004 3C9.377 3 4 8.373 4 15c0 2.34.65 4.53 1.78 6.4L4 29l7.78-1.74A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.63 28 15S22.63 3 16.004 3Zm0 21.8c-1.86 0-3.6-.5-5.1-1.37l-.365-.21-4.62 1.03 1.05-4.5-.24-.38A9.77 9.77 0 0 1 5.2 15c0-5.96 4.85-10.8 10.804-10.8S26.8 9.04 26.8 15 21.96 24.8 16.004 24.8Zm5.9-8.1c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.26-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.59-.95-.85-1.6-1.9-1.78-2.22-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.73-1.76-1-2.42-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.66s1.14 3.08 1.3 3.29c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.53 1.81.68.76.24 1.45.21 2 .13.61-.09 1.9-.77 2.17-1.52.27-.75.27-1.39.19-1.52-.08-.14-.29-.21-.61-.37Z"/></svg></a>
+            <a class="rsvp-social-link ig" href="https://www.instagram.com/tefap2026?stkn=MmQ0dG5pdjRmMXhv&amp;utm_source=qr" target="_blank" rel="noopener" aria-label="לדף האינסטגרם"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+          </legend>
+          <div class="rsvp-choices">
+            <label class="rsvp-choice"><input type="radio" name="social" value="joined"><span>נכנסתי לקבוצת וואטסאפ ולדף באינסטגרם</span></label>
+            <label class="rsvp-choice"><input type="radio" name="social" value="later"><span>אני אכנס, עוד לא יצא לי</span></label>
+            <label class="rsvp-choice"><input type="radio" name="social" value="no"><span>לא מעוניין תודה</span></label>
+          </div>
+        </fieldset>
+
+        <div class="rsvp-field">
+          <div class="slide-track" id="captchaTrack">
+            <div class="slide-fill" id="captchaFill"></div>
+            <span class="slide-text" id="captchaText">גררו את התוכי שמאלה לאימות</span>
+            <button type="button" class="slide-knob" id="captchaKnob" role="slider" aria-label="גררו את התוכי שמאלה לאימות" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span class="parrot" aria-hidden="true">🦜</span>
+            </button>
+          </div>
+          <p class="rsvp-error" data-error-for="captcha" aria-live="polite"></p>
+        </div>
+
+        <!-- honeypots: hidden from people; a bot that fills them gets quietly filtered out -->
+        <div class="hp-field" aria-hidden="true">
+          <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          <label>Email <input type="text" name="email_address" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <button type="submit" class="btn-rsvp rsvp-submit" id="rsvpSubmit">שליחה</button>
+        <p class="rsvp-status" id="rsvpStatus" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="rsvp-done" id="rsvpDone" hidden>
+        <span class="rsvp-done-emoji" id="rsvpDoneEmoji" aria-hidden="true">🎉</span>
+        <h3 id="rsvpDoneTitle"></h3>
+        <p>קיבלנו את התשובה שלכם.</p>
+        <button type="button" class="rsvp-again" id="rsvpAgain">רוצים לעדכן? מלאו שוב</button>
       </div>
     </div>
   </div>
@@ -614,58 +775,200 @@ lightbox.addEventListener('touchend', e=>{
   stepLightbox(dx < 0 ? 1 : -1);
 });
 
-/* ---------- shirt-color poll ---------- */
-// Vote storage: no backend/database here -- votes are POSTed (fire-and-forget)
-// to a Google Sheet via a tiny Apps Script Web App. Replace the placeholder
-// below with the deployed script's /exec URL to make votes actually save;
-// until then, voting still works from the visitor's point of view (the
-// localStorage lock below still applies), it just has nowhere to land.
-const POLL_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOchy645MRxVR1fr-o3q6r13BsWCXhIVy_5MEZYp9HO36ejWKMKbKyJX9AoKLHlDVnbw/exec';
-const POLL_STORAGE_KEY = 'tefap2026_shirt_vote';
+/* ---------- RSVP form ---------- */
+// Posts to the RSVP Apps Script Web App (apps-script/rsvp.gs). The body goes
+// out as a plain-text JSON string, which skips the CORS preflight and still
+// lets us read the script's reply, so people see a real success or error message.
+const RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwu3lb01vm-TmfUpyfOg02zCain_nmcIElyNpnd0FWXn8MPtBjQiKkU8tu8SQI4WHxOTg/exec';
+const RSVP_STORAGE_KEY = 'tefap2026_rsvp';
+const rsvpLoadedAt = Date.now();
 
-const pollSection = document.getElementById('poll');
-const pollPreEl = document.getElementById('pollPre');
-const pollVotedEl = document.getElementById('pollVoted');
-const pollVotedSwatch = document.getElementById('pollVotedSwatch');
-const pollVotedLabel = document.getElementById('pollVotedLabel');
+const rsvpForm = document.getElementById('rsvpForm');
+const rsvpComing = document.getElementById('rsvpComing');
+const rsvpNameInput = document.getElementById('rsvpName');
+const rsvpAdultsSelect = document.getElementById('rsvpAdults');
+const rsvpKidsSelect = document.getElementById('rsvpKids');
+const rsvpOtherCheck = document.getElementById('rsvpBringOther');
+const rsvpOtherText = document.getElementById('rsvpBringOtherText');
+const rsvpSubmitBtn = document.getElementById('rsvpSubmit');
+const rsvpStatus = document.getElementById('rsvpStatus');
+const rsvpDone = document.getElementById('rsvpDone');
+let rsvpLastSaved = null;
 
-function showPollVoted(color, label, swatchBg){
-  pollPreEl.classList.add('poll-collapsed');
-  pollSection.classList.add('voted');
-  pollVotedSwatch.style.background = swatchBg;
-  pollVotedLabel.textContent = label;
-  pollVotedEl.classList.add('show');
+function rsvpSetError(key, msg){
+  const el = rsvpForm.querySelector(`[data-error-for="${key}"]`);
+  if(el) el.textContent = msg;
+}
+function rsvpAttendingValue(){
+  const checked = rsvpForm.querySelector('input[name="attending"]:checked');
+  return checked ? checked.value : '';
 }
 
-function submitPollVote(color){
-  if(!POLL_SCRIPT_URL || POLL_SCRIPT_URL.indexOf('PASTE_') === 0) return;
-  fetch(POLL_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: new URLSearchParams({ color: color })
-  }).catch(()=>{ /* best-effort -- the vote still "counts" locally either way */ });
-}
-
-// Already voted on this device/browser? Skip straight to the voted view.
-const existingVote = localStorage.getItem(POLL_STORAGE_KEY);
-if(existingVote){
-  try {
-    const parsed = JSON.parse(existingVote);
-    showPollVoted(parsed.color, parsed.label, parsed.swatchBg);
-  } catch(err){ /* ignore a corrupted/old value and just let them vote again */ }
-}
-
-document.getElementById('pollOptions').querySelectorAll('.poll-option').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    if(localStorage.getItem(POLL_STORAGE_KEY)) return; // guard against a double-click race
-    const color = btn.dataset.color;
-    const label = btn.dataset.label;
-    const swatchBg = btn.querySelector('.poll-swatch').style.background;
-    localStorage.setItem(POLL_STORAGE_KEY, JSON.stringify({ color, label, swatchBg }));
-    submitPollVote(color);
-    showPollVoted(color, label, swatchBg);
-  });
+// "Coming" reveals the headcount / what-we-bring / volunteer block.
+rsvpForm.addEventListener('change', (e)=>{
+  if(e.target.name === 'attending'){
+    rsvpComing.hidden = rsvpAttendingValue() !== 'yes';
+    document.getElementById('rsvpSocial').hidden = !rsvpAttendingValue();
+    rsvpSetError('attending', '');
+  }
+  if(e.target === rsvpAdultsSelect) rsvpSetError('adults', '');
 });
+rsvpNameInput.addEventListener('input', ()=> rsvpSetError('name', ''));
+// Typing a detail next to "other" ticks the "other" box automatically.
+rsvpOtherText.addEventListener('input', ()=>{
+  if(rsvpOtherText.value.trim()) rsvpOtherCheck.checked = true;
+});
+
+/* slide-to-verify: the lightweight "captcha" */
+const captchaTrack = document.getElementById('captchaTrack');
+const captchaKnob = document.getElementById('captchaKnob');
+const captchaFill = document.getElementById('captchaFill');
+const captchaText = document.getElementById('captchaText');
+const CAPTCHA_PROMPT = captchaText.textContent;
+let captchaVerified = false;
+let captchaOffset = 0;
+let captchaDrag = null;
+
+function captchaMax(){ return Math.max(0, captchaTrack.clientWidth - captchaKnob.offsetWidth - 6); }
+function captchaSet(px){
+  const max = captchaMax();
+  captchaOffset = Math.max(0, Math.min(px, max));
+  // RTL: the knob starts on the right and travels left
+  captchaKnob.style.transform = `translateX(${-captchaOffset}px)`;
+  captchaFill.style.width = captchaOffset ? (captchaOffset + captchaKnob.offsetWidth + 6) + 'px' : '0';
+  captchaKnob.setAttribute('aria-valuenow', String(max ? Math.round(captchaOffset / max * 100) : 0));
+}
+function captchaComplete(){
+  captchaVerified = true;
+  captchaTrack.classList.add('verified');
+  captchaSet(captchaMax());
+  captchaText.textContent = 'אומת, תודה!';
+  rsvpSetError('captcha', '');
+}
+function captchaReset(){
+  captchaVerified = false;
+  captchaTrack.classList.remove('verified');
+  captchaText.textContent = CAPTCHA_PROMPT;
+  captchaSet(0);
+}
+captchaKnob.addEventListener('pointerdown', (e)=>{
+  if(captchaVerified) return;
+  e.preventDefault();
+  captchaKnob.setPointerCapture(e.pointerId);
+  captchaDrag = { startX: e.clientX, from: captchaOffset, startedAt: performance.now(), moves: 0 };
+  captchaTrack.classList.add('dragging');
+});
+captchaKnob.addEventListener('pointermove', (e)=>{
+  if(!captchaDrag) return;
+  captchaDrag.moves++;
+  captchaSet(captchaDrag.from + (captchaDrag.startX - e.clientX));
+});
+function captchaRelease(){
+  if(!captchaDrag) return;
+  // A real drag takes a moment and produces a stream of move events;
+  // an instant scripted jump to the end doesn't count.
+  const looksHuman = captchaDrag.moves >= 3 && performance.now() - captchaDrag.startedAt > 150;
+  captchaDrag = null;
+  captchaTrack.classList.remove('dragging');
+  if(looksHuman && captchaOffset >= captchaMax() - 4) captchaComplete();
+  else captchaSet(0);
+}
+captchaKnob.addEventListener('pointerup', captchaRelease);
+captchaKnob.addEventListener('pointercancel', captchaRelease);
+// Keyboard fallback: arrows move the knob (left = forward in RTL), End jumps to the end.
+captchaKnob.addEventListener('keydown', (e)=>{
+  if(captchaVerified) return;
+  const step = captchaMax() / 5;
+  if(e.key === 'ArrowLeft') captchaSet(captchaOffset + step);
+  else if(e.key === 'ArrowRight') captchaSet(captchaOffset - step);
+  else if(e.key === 'End') captchaSet(captchaMax());
+  else if(e.key === 'Home') captchaSet(0);
+  else return;
+  e.preventDefault();
+  if(captchaOffset >= captchaMax() - 1) captchaComplete();
+});
+window.addEventListener('resize', ()=> captchaSet(captchaVerified ? captchaMax() : 0));
+
+/* submit */
+rsvpForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  rsvpForm.querySelectorAll('.rsvp-error').forEach(el=> el.textContent = '');
+  rsvpStatus.textContent = '';
+  rsvpStatus.classList.remove('error');
+
+  const name = rsvpNameInput.value.trim();
+  const attending = rsvpAttendingValue();
+  const coming = attending === 'yes';
+  const adults = parseInt(rsvpAdultsSelect.value, 10) || 0;
+  const kids = parseInt(rsvpKidsSelect.value, 10) || 0;
+
+  let firstInvalid = null;
+  const invalid = (key, msg, el)=>{ rsvpSetError(key, msg); if(!firstInvalid) firstInvalid = el; };
+  if(!name) invalid('name', 'נא למלא שם מלא', rsvpNameInput);
+  if(!attending) invalid('attending', 'נא לבחור אם אתם מגיעים', rsvpForm.querySelector('input[name="attending"]'));
+  if(coming && adults < 1) invalid('adults', 'נא לבחור כמה מבוגרים מגיעים (לפחות אחד)', rsvpAdultsSelect);
+  if(!captchaVerified) invalid('captcha', 'נא לגרור את התוכי עד הסוף', captchaKnob);
+  if(firstInvalid){ firstInvalid.focus(); return; }
+
+  const socialChecked = rsvpForm.querySelector('input[name="social"]:checked');
+  const payload = {
+    type: 'rsvp',
+    name,
+    attending,
+    adults: coming ? adults : 0,
+    kids: coming ? kids : 0,
+    bring: coming ? [...rsvpForm.querySelectorAll('input[name="bring"]:checked')].map(i=> i.value) : [],
+    bringOther: coming && rsvpOtherCheck.checked ? rsvpOtherText.value.trim().slice(0, 50) : '',
+    volunteer: coming && document.getElementById('rsvpVolunteer').checked,
+    social: socialChecked ? socialChecked.value : '',
+    website: rsvpForm.querySelector('[name="website"]').value,
+    email_address: rsvpForm.querySelector('[name="email_address"]').value,
+    captcha: captchaVerified,
+    elapsed: Date.now() - rsvpLoadedAt
+  };
+
+  rsvpSubmitBtn.disabled = true;
+  rsvpSubmitBtn.textContent = 'שולחים...';
+  try {
+    if(RSVP_SCRIPT_URL.indexOf('PASTE_') === 0) throw new Error('RSVP_SCRIPT_URL not set yet');
+    const res = await fetch(RSVP_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+    const reply = await res.json();
+    if(reply.status !== 'ok') throw new Error(reply.message || 'rsvp failed');
+    const saved = { name, attending };
+    try { localStorage.setItem(RSVP_STORAGE_KEY, JSON.stringify(saved)); } catch(err){ /* private mode etc. */ }
+    showRsvpDone(saved);
+  } catch(err){
+    rsvpStatus.textContent = 'משהו השתבש בשליחה. נסו שוב בעוד רגע.';
+    rsvpStatus.classList.add('error');
+  } finally {
+    rsvpSubmitBtn.disabled = false;
+    rsvpSubmitBtn.textContent = 'שליחה';
+  }
+});
+
+function showRsvpDone(saved){
+  rsvpLastSaved = saved;
+  const coming = saved.attending === 'yes';
+  document.getElementById('rsvpDoneEmoji').textContent = coming ? '🎉' : '💛';
+  document.getElementById('rsvpDoneTitle').textContent = coming
+    ? `תודה ${saved.name}! נתראה במסיבה`
+    : `תודה ${saved.name}, נתגעגע!`;
+  rsvpForm.hidden = true;
+  rsvpDone.hidden = false;
+}
+document.getElementById('rsvpAgain').addEventListener('click', ()=>{
+  rsvpDone.hidden = true;
+  rsvpForm.hidden = false;
+  captchaReset(); // a fresh submission needs a fresh slide
+  if(!rsvpNameInput.value && rsvpLastSaved) rsvpNameInput.value = rsvpLastSaved.name;
+  rsvpNameInput.focus();
+});
+
+// Already answered from this browser? Show the thank-you (with the option to update).
+try {
+  const savedRsvp = JSON.parse(localStorage.getItem(RSVP_STORAGE_KEY) || 'null');
+  if(savedRsvp && savedRsvp.name) showRsvpDone(savedRsvp);
+} catch(err){ /* ignore a corrupted value and just show the form */ }
 </script>
 </body>
 </html>
