@@ -189,11 +189,28 @@ a.hero-info-item:hover{text-decoration:underline;}
   font-weight:800;color:#1f86c8;text-decoration:underline;
 }
 .paybox-pay img{display:block;height:30px;width:auto;}
+/* QR codes: only on computers with a mouse (on a phone you can't scan your own screen) */
+.paybox-hero .paybox-qr,.paybox-pay .paybox-qr-lg,.pay-desktop-text{display:none;}
+@media (hover:hover) and (pointer:fine){
+  .paybox-hero{gap:12px;padding:0 22px 0 14px;}
+  .paybox-hero .paybox-qr{
+    display:block;width:48px;height:48px;border-radius:6px;background:#fff;
+    position:relative;z-index:3;transform-origin:left center;
+    transition:transform .2s ease,box-shadow .2s ease;
+  }
+  /* pops out bigger on hover, for easier scanning */
+  .paybox-hero:hover .paybox-qr{transform:scale(2.6);box-shadow:0 6px 24px rgba(0,0,0,.35);}
+  .paybox-pay{gap:14px;text-decoration:none;}
+  .paybox-pay img{flex:0 0 auto;height:28px;}
+  .pay-touch-text{display:none;}
+  .pay-desktop-text{display:inline;}
+  .paybox-pay .paybox-qr-lg{display:block;width:110px;height:110px;}
+}
 
 /* ---------- modal (shirt order) ---------- */
 .modal{
   padding:0;border:none;border-radius:24px;
-  width:min(560px, calc(100vw - 32px));max-width:none;max-height:min(88vh, 760px);
+  width:min(600px, calc(100vw - 32px));max-width:none;max-height:min(88vh, 760px);
   background:#fff;color:var(--ink);
   box-shadow:0 24px 60px rgba(0,0,0,.3);overflow:hidden;
 }
@@ -510,7 +527,7 @@ footer p{margin:0 0 6px;opacity:.85;}
       <a href="#rsvp" class="btn-rsvp">אשרו הגעה!</a>
       <span class="shirt-cta-group">
         <button type="button" class="btn-rsvp btn-shirt" id="shirtOpen" aria-haspopup="dialog">הזמינו חולצות</button>
-        <a class="paybox-hero" href="https://links.payboxapp.com/upUQTyxaK6b" target="_blank" rel="noopener" title="תשלום בפייבוקס" aria-label="תשלום על החולצות בקבוצת הפייבוקס"><img src="images/paybox.png" width="210" height="61" alt=""></a>
+        <a class="paybox-hero" href="https://links.payboxapp.com/upUQTyxaK6b" target="_blank" rel="noopener" title="תשלום בפייבוקס" aria-label="תשלום על החולצות בקבוצת הפייבוקס"><img src="images/paybox.png" width="210" height="61" alt=""><img class="paybox-qr" src="images/paybox-qr.png" width="162" height="162" alt=""></a>
       </span>
     </div>
     <div class="hero-info-ribbon">
@@ -769,16 +786,6 @@ footer p{margin:0 0 6px;opacity:.85;}
             <option value="8">8</option>
             <option value="9">9</option>
             <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
           </select>
         </div>
 
@@ -802,7 +809,9 @@ footer p{margin:0 0 6px;opacity:.85;}
         <h3>תודה! ההזמנה נקלטה</h3>
         <p id="shirtDoneText"></p>
         <a class="paybox-pay" href="https://links.payboxapp.com/upUQTyxaK6b" target="_blank" rel="noopener">
-          <span>העבירו לקבוצה בלינק הזה</span>
+          <span class="pay-touch-text">העבירו לקבוצה בלינק הזה</span>
+          <span class="pay-desktop-text">סרקו את הברקוד כדי להעביר לקבוצה</span>
+          <img class="paybox-qr-lg" src="images/paybox-qr.png" width="162" height="162" alt="ברקוד לקבוצת הפייבוקס">
           <img src="images/paybox.png" width="210" height="61" alt="PayBox">
         </a>
       </div>
@@ -1115,7 +1124,7 @@ try {
 } catch(err){ /* ignore a corrupted value and just show the form */ }
 
 /* ---------- shirt order modal ---------- */
-const SHIRT_SIZES = ['4','6','8','10','12','14','16','18','XS','S','M','L','XL','XXL','XXXL'];
+const SHIRT_SIZES = ['4','6','8','10','12','14','16','18','S','M','L','XL','XXL','XXXL'];
 const SHIRT_PRICE = 20;
 const shirtModal = document.getElementById('shirtModal');
 const shirtForm = document.getElementById('shirtForm');
