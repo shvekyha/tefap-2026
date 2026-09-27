@@ -163,7 +163,7 @@ a.hero-info-item:hover{text-decoration:underline;}
 }
 .hero-gallery-cta:hover{transform:translateY(-2px);background:rgba(255,255,255,.25);}
 .hero-gallery-cta svg{width:22px;height:22px;flex:0 0 auto;}
-.hero-rsvp-cta{margin:4px 0 22px;}
+.hero-rsvp-cta{margin:4px 0 22px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px;}
 .btn-rsvp{
   display:inline-block;text-decoration:none;font-weight:800;font-size:1.05rem;
   font-family:var(--font-body);
@@ -173,7 +173,65 @@ a.hero-info-item:hover{text-decoration:underline;}
   transition:transform .15s ease,box-shadow .15s ease;
 }
 .btn-rsvp:hover{transform:translateY(-2px);box-shadow:0 7px 0 rgba(0,0,0,.2);}
-.hero-rsvp-cta .btn-rsvp{font-size:1.3rem;font-weight:800;padding:16px 44px;}
+.hero-rsvp-cta .btn-rsvp{font-size:1.3rem;font-weight:800;padding:16px 44px;min-width:250px;text-align:center;}
+.btn-shirt{background:var(--teal);color:#fff;border:none;cursor:pointer;line-height:inherit;}
+.shirt-cta-group{display:inline-flex;align-items:center;gap:10px;}
+/* PayBox link (logo on a white pill, same height as the hero buttons) */
+.paybox-hero{
+  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+  height:64px;padding:0 22px;border-radius:999px;background:#fff;
+  box-shadow:0 5px 0 rgba(0,0,0,.18);transition:transform .15s ease;
+}
+.paybox-hero img{display:block;height:34px;width:auto;}
+.paybox-hero:hover{transform:translateY(-2px);}
+.paybox-pay{
+  display:inline-flex;align-items:center;gap:12px;margin-top:10px;
+  font-weight:800;color:#1f86c8;text-decoration:underline;
+}
+.paybox-pay img{display:block;height:30px;width:auto;}
+
+/* ---------- modal (shirt order) ---------- */
+.modal{
+  padding:0;border:none;border-radius:24px;
+  width:min(560px, calc(100vw - 32px));max-width:none;max-height:min(88vh, 760px);
+  background:#fff;color:var(--ink);
+  box-shadow:0 24px 60px rgba(0,0,0,.3);overflow:hidden;
+}
+.modal[open]{display:flex;flex-direction:column;animation:modalIn .22s ease;}
+.modal::backdrop{background:rgba(58,46,57,.55);backdrop-filter:blur(3px);}
+@keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.98);}to{opacity:1;transform:none;}}
+.modal-inner{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;}
+.modal-header{padding:22px 26px 8px;text-align:center;}
+.modal-header h2{margin:0;font-size:1.35rem;line-height:1.3;}
+.modal-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:10px 26px 22px;}
+.modal-note{margin:0;background:var(--amber-tint);border-radius:14px;padding:12px 16px;font-size:.93rem;line-height:1.6;}
+.shirt-fields{display:flex;flex-direction:column;gap:18px;}
+.shirt-sizes{display:flex;flex-wrap:wrap;gap:10px;}
+.shirt-fields .rsvp-field > .rsvp-select{align-self:flex-start;}
+.rsvp-select.invalid{border-color:#c8323d;}
+.modal-footer{
+  display:flex;justify-content:flex-end;gap:12px;
+  padding:16px 26px;border-top:1px solid rgba(58,46,57,.1);background:var(--cream);
+}
+.modal-btn{
+  font:inherit;font-weight:800;font-size:1rem;line-height:1.2;
+  padding:12px 30px;border-radius:999px;border:2px solid transparent;cursor:pointer;
+  transition:transform .15s ease,border-color .15s ease;
+}
+.modal-cancel{background:#fff;border-color:rgba(58,46,57,.2);color:var(--ink);}
+.modal-cancel:hover{border-color:var(--ink);}
+.modal-submit{background:var(--teal);color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.15);}
+.modal-submit:hover{transform:translateY(-1px);}
+body.modal-open{overflow:hidden;}
+@media (max-width:600px){
+  /* full-screen on phones */
+  .modal{width:100vw;max-width:100vw;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;margin:0;border-radius:0;}
+  .modal-header{padding:20px 18px 6px;}
+  .modal-body{padding:8px 18px 18px;}
+  .modal-footer{padding:14px 18px calc(14px + env(safe-area-inset-bottom));}
+  .modal-btn{flex:1 1 0;}
+}
+@media (prefers-reduced-motion: reduce){ .modal[open]{animation:none;} }
 
 /* ---------- details ---------- */
 .section-details{background:var(--coral-tint);}
@@ -415,7 +473,12 @@ footer p{margin:0 0 6px;opacity:.85;}
   .rsvp-social .rsvp-choice{flex:0 0 auto;}
   .hero-tagline{font-size:.95rem;}
   .hero-tagline-highlight{font-size:1.12rem;}
-  .hero-rsvp-cta .btn-rsvp{font-size:1.2rem;padding:15px 38px;}
+  .hero-rsvp-cta{flex-direction:column;align-items:center;}
+  .hero-rsvp-cta .btn-rsvp{font-size:1.2rem;padding:15px 38px;width:100%;max-width:340px;min-width:0;}
+  .shirt-cta-group{flex-direction:column;width:100%;max-width:340px;}
+  .shirt-cta-group .btn-shirt{max-width:none;}
+  .paybox-hero{height:50px;padding:0 20px;}
+  .paybox-hero img{height:28px;}
   .hero-socials{flex-direction:column;align-items:stretch;max-width:320px;margin-left:auto;margin-right:auto;}
   .hero-info-ribbon{gap:10px 14px;padding:12px 16px;}
   .hero-info-item{font-size:.98rem;}
@@ -445,6 +508,10 @@ footer p{margin:0 0 6px;opacity:.85;}
     <p class="hero-tagline">בפעם האחרונה זה קרה ב-2013. מאז כולנו התבגרנו, השתננו, עברנו דירות ושינינו סטאטוס. וכמובן שיש דור שלם של ילדים שמעולם לא נפגשו וחברים חדשים שלא יודעים מה זה TEFAP. הגיע הזמן לתקן את זה.<span class="hero-tagline-highlight">והפעם חוגגים 50 שנה ו-80 שנה!</span></p>
     <div class="hero-rsvp-cta">
       <a href="#rsvp" class="btn-rsvp">אשרו הגעה!</a>
+      <span class="shirt-cta-group">
+        <button type="button" class="btn-rsvp btn-shirt" id="shirtOpen" aria-haspopup="dialog">הזמינו חולצות</button>
+        <a class="paybox-hero" href="https://links.payboxapp.com/upUQTyxaK6b" target="_blank" rel="noopener" title="תשלום בפייבוקס" aria-label="תשלום על החולצות בקבוצת הפייבוקס"><img src="images/paybox.png" width="210" height="61" alt=""></a>
+      </span>
     </div>
     <div class="hero-info-ribbon">
       <span class="hero-info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>שבת, 17.10.2026 · 15:00</span></span>
@@ -669,6 +736,83 @@ footer p{margin:0 0 6px;opacity:.85;}
   <p>TEFAP רשמית חוזר. שלא נחכה עד 2039 לפעם הבאה.</p>
   <p>נוצר באהבה, בנוסטלגיה ובקצת טוקנים על ידי ההאדידסים והמשפחה המורחבת.</p>
 </footer>
+
+<!-- ================= SHIRT ORDER MODAL =================
+     Posts to the same Apps Script as the RSVP form (apps-script/rsvp.gs),
+     which writes each order as a row in the sheet's "shirts" tab.
+-->
+<dialog class="modal" id="shirtModal" aria-labelledby="shirtModalTitle">
+  <form class="modal-inner" id="shirtForm" novalidate>
+    <div class="modal-header">
+      <h2 id="shirtModalTitle">הזמינו חולצות למסיבה עם עיצוב ייחודי ל 2026</h2>
+    </div>
+    <div class="modal-body">
+      <div class="shirt-fields" id="shirtFields">
+        <p class="modal-note">זהו טופס לאיסוף כמויות בלבד, את התשלום נבקש שתעבירו בפייבוקס, <strong>20שח לחולצה</strong>. הזמנה תתבצע רק בהעברת תשלום מלא, תשלום שלא יועבר עד <strong>תאריך 10.10</strong> לא יכלל ולא נוכל להזמין לכם חולצה - חבל! תעבירו בזמן:)</p>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label" for="shirtName">שם מלא <span class="req" aria-hidden="true">*</span></label>
+          <input class="rsvp-input" type="text" id="shirtName" maxlength="80" autocomplete="name" required>
+          <p class="rsvp-error" data-error-for="name" aria-live="polite"></p>
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label" for="shirtCount">כמה חולצות תרצו?</label>
+          <select class="rsvp-select" id="shirtCount">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+
+        <fieldset class="rsvp-field">
+          <legend class="rsvp-label">באיזה מידות? <span class="req" aria-hidden="true">*</span></legend>
+          <div class="shirt-sizes" id="shirtSizes"></div>
+          <p class="rsvp-error" data-error-for="sizes" aria-live="polite"></p>
+        </fieldset>
+
+        <!-- honeypots, same idea as in the RSVP form -->
+        <div class="hp-field" aria-hidden="true">
+          <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          <label>Email <input type="text" name="email_address" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <p class="rsvp-status" id="shirtStatus" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="rsvp-done" id="shirtDone" hidden>
+        <span class="rsvp-done-emoji" aria-hidden="true">👕</span>
+        <h3>תודה! ההזמנה נקלטה</h3>
+        <p id="shirtDoneText"></p>
+        <a class="paybox-pay" href="https://links.payboxapp.com/upUQTyxaK6b" target="_blank" rel="noopener">
+          <span>העבירו לקבוצה בלינק הזה</span>
+          <img src="images/paybox.png" width="210" height="61" alt="PayBox">
+        </a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="modal-btn modal-cancel" id="shirtCancel">ביטול</button>
+      <button type="submit" class="modal-btn modal-submit" id="shirtSubmit">שליחה</button>
+    </div>
+  </form>
+</dialog>
 
 <script>
 /* ---------- scroll reveal ---------- */
@@ -969,6 +1113,136 @@ try {
   const savedRsvp = JSON.parse(localStorage.getItem(RSVP_STORAGE_KEY) || 'null');
   if(savedRsvp && savedRsvp.name) showRsvpDone(savedRsvp);
 } catch(err){ /* ignore a corrupted value and just show the form */ }
+
+/* ---------- shirt order modal ---------- */
+const SHIRT_SIZES = ['4','6','8','10','12','14','16','18','XS','S','M','L','XL','XXL','XXXL'];
+const SHIRT_PRICE = 20;
+const shirtModal = document.getElementById('shirtModal');
+const shirtForm = document.getElementById('shirtForm');
+const shirtNameInput = document.getElementById('shirtName');
+const shirtCountSelect = document.getElementById('shirtCount');
+const shirtSizesBox = document.getElementById('shirtSizes');
+const shirtFields = document.getElementById('shirtFields');
+const shirtDone = document.getElementById('shirtDone');
+const shirtStatus = document.getElementById('shirtStatus');
+const shirtSubmitBtn = document.getElementById('shirtSubmit');
+const shirtCancelBtn = document.getElementById('shirtCancel');
+let shirtPressedOutside = false;
+let shirtOpenedAt = 0;
+
+function shirtSetError(key, msg){
+  const el = shirtForm.querySelector(`[data-error-for="${key}"]`);
+  if(el) el.textContent = msg;
+}
+
+// One size dropdown per shirt. Adds/removes at the end so sizes already picked stay put.
+function renderShirtSizes(){
+  const want = parseInt(shirtCountSelect.value, 10) || 1;
+  while(shirtSizesBox.children.length < want){
+    const sel = document.createElement('select');
+    sel.className = 'rsvp-select';
+    sel.required = true;
+    sel.setAttribute('aria-label', `מידה לחולצה ${shirtSizesBox.children.length + 1}`);
+    sel.innerHTML = '<option value="">מידה</option>' + SHIRT_SIZES.map(z => `<option value="${z}">${z}</option>`).join('');
+    sel.addEventListener('change', ()=>{
+      sel.classList.remove('invalid');
+      if(!shirtSizesBox.querySelector('.invalid')) shirtSetError('sizes', '');
+    });
+    shirtSizesBox.appendChild(sel);
+  }
+  while(shirtSizesBox.children.length > want) shirtSizesBox.lastElementChild.remove();
+  if(!shirtSizesBox.querySelector('.invalid')) shirtSetError('sizes', '');
+}
+shirtCountSelect.addEventListener('change', renderShirtSizes);
+shirtNameInput.addEventListener('input', ()=> shirtSetError('name', ''));
+
+function resetShirtForm(){
+  shirtForm.reset();
+  shirtSizesBox.innerHTML = '';
+  renderShirtSizes();
+  shirtForm.querySelectorAll('.rsvp-error').forEach(el=> el.textContent = '');
+  shirtStatus.textContent = '';
+  shirtStatus.classList.remove('error');
+  shirtFields.hidden = false;
+  shirtDone.hidden = true;
+  shirtSubmitBtn.hidden = false;
+  shirtCancelBtn.textContent = 'ביטול';
+  // Handy: reuse the name from this browser's RSVP, if there is one.
+  try {
+    const rsvp = JSON.parse(localStorage.getItem(RSVP_STORAGE_KEY) || 'null');
+    if(rsvp && rsvp.name) shirtNameInput.value = rsvp.name;
+  } catch(err){ /* ignore */ }
+}
+resetShirtForm();
+
+function openShirtModal(){
+  if(!shirtDone.hidden) resetShirtForm(); // start fresh after a completed order
+  shirtOpenedAt = Date.now();
+  shirtModal.showModal();
+  document.body.classList.add('modal-open');
+}
+function closeShirtModal(){ shirtModal.close(); }
+// .close() and the Esc key both end up here
+shirtModal.addEventListener('close', ()=> document.body.classList.remove('modal-open'));
+document.getElementById('shirtOpen').addEventListener('click', openShirtModal);
+document.getElementById('shirtCancel').addEventListener('click', closeShirtModal);
+// A click on the dimmed backdrop lands on the <dialog> itself (the panel fills it),
+// so that means "outside". Checking the press too means selecting text inside and
+// releasing outside doesn't close it by accident.
+shirtModal.addEventListener('pointerdown', (e)=>{ shirtPressedOutside = e.target === shirtModal; });
+shirtModal.addEventListener('click', (e)=>{
+  if(e.target === shirtModal && shirtPressedOutside) closeShirtModal();
+  shirtPressedOutside = false;
+});
+shirtForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  shirtForm.querySelectorAll('.rsvp-error').forEach(el=> el.textContent = '');
+  shirtStatus.textContent = '';
+  shirtStatus.classList.remove('error');
+
+  const name = shirtNameInput.value.trim();
+  const selects = [...shirtSizesBox.querySelectorAll('select')];
+  const count = selects.length;
+  let firstInvalid = null;
+  if(!name){ shirtSetError('name', 'נא למלא שם מלא'); firstInvalid = shirtNameInput; }
+  const missing = selects.filter(sel=> !sel.value);
+  missing.forEach(sel=> sel.classList.add('invalid'));
+  if(missing.length){
+    shirtSetError('sizes', count > 1 ? 'נא לבחור מידה לכל חולצה' : 'נא לבחור מידה');
+    if(!firstInvalid) firstInvalid = missing[0];
+  }
+  if(firstInvalid){ firstInvalid.focus(); return; }
+
+  const payload = {
+    type: 'shirts',
+    name,
+    count,
+    sizes: selects.map(sel=> sel.value),
+    website: shirtForm.querySelector('[name="website"]').value,
+    email_address: shirtForm.querySelector('[name="email_address"]').value,
+    elapsed: Date.now() - shirtOpenedAt
+  };
+
+  shirtSubmitBtn.disabled = true;
+  shirtSubmitBtn.textContent = 'שולחים...';
+  try {
+    const res = await fetch(RSVP_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+    const reply = await res.json();
+    if(reply.status !== 'ok') throw new Error(reply.message || 'shirt order failed');
+    document.getElementById('shirtDoneText').textContent =
+      `הזמנתם ${count === 1 ? 'חולצה אחת' : count + ' חולצות'}. כדי שההזמנה תיכנס, העבירו ${count * SHIRT_PRICE} ש"ח בפייבוקס עד 10.10.`;
+    shirtFields.hidden = true;
+    shirtDone.hidden = false;
+    shirtSubmitBtn.hidden = true;
+    shirtCancelBtn.textContent = 'סגירה';
+  } catch(err){
+    shirtStatus.textContent = 'משהו השתבש בשליחה. נסו שוב בעוד רגע.';
+    shirtStatus.classList.add('error');
+  } finally {
+    shirtSubmitBtn.disabled = false;
+    shirtSubmitBtn.textContent = 'שליחה';
+  }
+});
 </script>
 </body>
 </html>
