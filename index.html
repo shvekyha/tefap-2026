@@ -706,10 +706,11 @@ footer p{margin:0 0 6px;opacity:.85;}
           <p class="rsvp-error" data-error-for="captcha" aria-live="polite"></p>
         </div>
 
-        <!-- honeypots: hidden from people; a bot that fills them gets quietly filtered out -->
+        <!-- honeypots: hidden from people; a bot that fills them gets quietly filtered out.
+             Names are deliberately meaningless so browser autofill leaves them alone. -->
         <div class="hp-field" aria-hidden="true">
-          <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-          <label>Email <input type="text" name="email_address" tabindex="-1" autocomplete="off"></label>
+          <input type="text" name="hp1" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other">
+          <input type="text" name="hp2" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other">
         </div>
 
         <button type="submit" class="btn-rsvp rsvp-submit" id="rsvpSubmit">שליחה</button>
@@ -797,8 +798,8 @@ footer p{margin:0 0 6px;opacity:.85;}
 
         <!-- honeypots, same idea as in the RSVP form -->
         <div class="hp-field" aria-hidden="true">
-          <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-          <label>Email <input type="text" name="email_address" tabindex="-1" autocomplete="off"></label>
+          <input type="text" name="hp1" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other">
+          <input type="text" name="hp2" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other">
         </div>
 
         <p class="rsvp-status" id="shirtStatus" role="status" aria-live="polite"></p>
@@ -1074,8 +1075,8 @@ rsvpForm.addEventListener('submit', async (e)=>{
     bringOther: coming && rsvpOtherCheck.checked ? rsvpOtherText.value.trim().slice(0, 50) : '',
     volunteer: coming && document.getElementById('rsvpVolunteer').checked,
     social: socialChecked ? socialChecked.value : '',
-    website: rsvpForm.querySelector('[name="website"]').value,
-    email_address: rsvpForm.querySelector('[name="email_address"]').value,
+    hp1: rsvpForm.querySelector('[name="hp1"]').value,
+    hp2: rsvpForm.querySelector('[name="hp2"]').value,
     captcha: captchaVerified,
     elapsed: Date.now() - rsvpLoadedAt
   };
@@ -1227,8 +1228,8 @@ shirtForm.addEventListener('submit', async (e)=>{
     name,
     count,
     sizes: selects.map(sel=> sel.value),
-    website: shirtForm.querySelector('[name="website"]').value,
-    email_address: shirtForm.querySelector('[name="email_address"]').value,
+    hp1: shirtForm.querySelector('[name="hp1"]').value,
+    hp2: shirtForm.querySelector('[name="hp2"]').value,
     elapsed: Date.now() - shirtOpenedAt
   };
 

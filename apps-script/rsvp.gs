@@ -66,11 +66,15 @@ function doPost(e) {
   }
 }
 
-function handleRsvp_(d) {
+// `when` (optional) keeps an original timestamp; `restoring` skips the bot
+// checks. Both are only used by restoreHoneypotSpam() below.
+function handleRsvp_(d, when, restoring) {
   // Bot checks: the hidden honeypot fields must be empty, the form must have
   // been open for a few seconds, and the slide-to-verify must be done.
   var spamReason = '';
-  if (text_(d.website) || text_(d.email_address)) {
+  if (restoring) {
+    spamReason = '';
+  } else if (text_(d.hp1) || text_(d.hp2)) {
     spamReason = 'honeypot filled';
   } else if (!(Number(d.elapsed) >= MIN_FILL_MS)) {
     spamReason = 'submitted too fast';
@@ -113,17 +117,19 @@ function handleRsvp_(d) {
 
   withLock_(function () {
     getSheet_('RSVP', RSVP_HEADERS).appendRow([
-      new Date(), name, attending === 'yes' ? 'מגיעים' : 'לא מגיעים',
+      when || new Date(), name, attending === 'yes' ? 'מגיעים' : 'לא מגיעים',
       adults, kids, total, bring, bringOther, volunteer, social
     ]);
   });
   return json_({ status: 'ok' });
 }
 
-function handleShirts_(d) {
+function handleShirts_(d, when, restoring) {
   // Same honeypot + timing checks as the RSVP form (the shirt form has no slider).
   var spamReason = '';
-  if (text_(d.website) || text_(d.email_address)) {
+  if (restoring) {
+    spamReason = '';
+  } else if (text_(d.hp1) || text_(d.hp2)) {
     spamReason = 'shirts: honeypot filled';
   } else if (!(Number(d.elapsed) >= MIN_FILL_MS)) {
     spamReason = 'shirts: submitted too fast';
@@ -162,7 +168,7 @@ function handleShirts_(d) {
     var header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
     var row = header.map(function (h) {
       h = String(h).trim();
-      if (h === 'תאריך') return new Date();
+      if (h === 'תאריך') return when || new Date();
       if (h === 'שם מלא') return name;
       if (h === 'כמות') return count;
       return perSize[h] || '';
@@ -170,6 +176,30 @@ function handleShirts_(d) {
     sheet.appendRow(row);
   });
   return json_({ status: 'ok' });
+}
+
+/**
+ * One-off repair. Run it by hand: in the Apps Script editor pick
+ * "restoreHoneypotSpam" in the function dropdown at the top and click Run.
+ * Every "honeypot filled" row in the Spam tab is re-filed into RSVP / shirts
+ * with its original time, and marked "restored" in the Spam tab. Needed because
+ * the old hidden fields could be filled in by browser autofill for real people.
+ * Safe to run again: rows already marked restored are skipped.
+ */
+function restoreHoneypotSpam() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Spam');
+  if (!sheet || sheet.getLastRow() < 2) return;
+  var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, 3).getValues();
+  rows.forEach(function (row, i) {
+    var reason = String(row[1]);
+    if (reason !== 'honeypot filled' && reason !== 'shirts: honeypot filled') return;
+    var d;
+    try { d = JSON.parse(String(row[2])); } catch (err) { return; }
+    var out = d.type === 'shirts' ? handleShirts_(d, row[0], true) : handleRsvp_(d, row[0], true);
+    var result = JSON.parse(out.getContent());
+    sheet.getRange(i + 2, 2).setValue(
+      result.status === 'ok' ? reason + ' -> restored' : reason + ' -> not restored: ' + result.message);
+  });
 }
 
 /* ---------- helpers ---------- */
